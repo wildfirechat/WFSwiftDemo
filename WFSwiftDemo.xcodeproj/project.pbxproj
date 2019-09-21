@@ -12,7 +12,49 @@
 		2BF9CD05233500620019492E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD03233500620019492E /* Main.storyboard */; };
 		2BF9CD07233500640019492E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD06233500640019492E /* Assets.xcassets */; };
 		2BF9CD0A233500640019492E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD08233500640019492E /* LaunchScreen.storyboard */; };
+		2BF9CD21233501250019492E /* wfc.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD12233501250019492E /* wfc.strings */; };
+		2BF9CD22233501250019492E /* WFChatUIKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD14233501250019492E /* WFChatUIKit.xcassets */; };
+		2BF9CD24233501250019492E /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD17233501250019492E /* Stickers.bundle */; };
+		2BF9CD26233501250019492E /* Emoj.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD19233501250019492E /* Emoj.plist */; };
+		2BF9CD28233501250019492E /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD1C233501250019492E /* LICENSE.md */; };
+		2BF9CD2A233501250019492E /* WFCUShareMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD20233501250019492E /* WFCUShareMessageView.xib */; };
+		2BF9CD34233501570019492E /* WFChatUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD16233501250019492E /* WFChatUIKit.framework */; };
+		2BF9CD35233501570019492E /* WFChatUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD16233501250019492E /* WFChatUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF9CD36233501570019492E /* WFAVEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD18233501250019492E /* WFAVEngineKit.framework */; };
+		2BF9CD37233501570019492E /* WFAVEngineKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD18233501250019492E /* WFAVEngineKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF9CD38233501570019492E /* WFChatClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD1A233501250019492E /* WFChatClient.framework */; };
+		2BF9CD39233501570019492E /* WFChatClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD1A233501250019492E /* WFChatClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF9CD3A233501570019492E /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD1F233501250019492E /* WebRTC.framework */; };
+		2BF9CD3B233501570019492E /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF9CD1F233501250019492E /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2BF9CD3F2335AAEC0019492E /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD3E2335AAEC0019492E /* MainTabViewController.swift */; };
+		2BF9CD4E2335C7530019492E /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD452335C7530019492E /* AFURLResponseSerialization.m */; };
+		2BF9CD4F2335C7530019492E /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD462335C7530019492E /* AFHTTPSessionManager.m */; };
+		2BF9CD502335C7530019492E /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD482335C7530019492E /* AFURLSessionManager.m */; };
+		2BF9CD512335C7530019492E /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD492335C7530019492E /* AFURLRequestSerialization.m */; };
+		2BF9CD522335C7530019492E /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD4B2335C7530019492E /* AFNetworkReachabilityManager.m */; };
+		2BF9CD532335C7530019492E /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD4C2335C7530019492E /* AFSecurityPolicy.m */; };
+		2BF9CD592335D89C0019492E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9CD582335D89C0019492E /* Config.swift */; };
+		2BF9CD5D2335E0570019492E /* foreman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5A2335E0570019492E /* foreman.mp4 */; };
+		2BF9CD5E2335E0570019492E /* ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5B2335E0570019492E /* ring.caf */; };
+		2BF9CD5F2335E0570019492E /* ring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5C2335E0570019492E /* ring.mp3 */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2BF9CD3C233501570019492E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2BF9CD35233501570019492E /* WFChatUIKit.framework in Embed Frameworks */,
+				2BF9CD39233501570019492E /* WFChatClient.framework in Embed Frameworks */,
+				2BF9CD37233501570019492E /* WFAVEngineKit.framework in Embed Frameworks */,
+				2BF9CD3B233501570019492E /* WebRTC.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2BF9CCFC233500620019492E /* WFSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +64,36 @@
 		2BF9CD06233500640019492E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BF9CD09233500640019492E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BF9CD0B233500640019492E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BF9CD13233501250019492E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/wfc.strings"; sourceTree = "<group>"; };
+		2BF9CD14233501250019492E /* WFChatUIKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = WFChatUIKit.xcassets; sourceTree = "<group>"; };
+		2BF9CD15233501250019492E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/wfc.strings; sourceTree = "<group>"; };
+		2BF9CD16233501250019492E /* WFChatUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WFChatUIKit.framework; sourceTree = "<group>"; };
+		2BF9CD17233501250019492E /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Stickers.bundle; sourceTree = "<group>"; };
+		2BF9CD18233501250019492E /* WFAVEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WFAVEngineKit.framework; sourceTree = "<group>"; };
+		2BF9CD19233501250019492E /* Emoj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoj.plist; sourceTree = "<group>"; };
+		2BF9CD1A233501250019492E /* WFChatClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WFChatClient.framework; sourceTree = "<group>"; };
+		2BF9CD1C233501250019492E /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		2BF9CD1F233501250019492E /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		2BF9CD20233501250019492E /* WFCUShareMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WFCUShareMessageView.xib; sourceTree = "<group>"; };
+		2BF9CD3D233502BE0019492E /* WFChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WFChat-Bridging-Header.h"; sourceTree = "<group>"; };
+		2BF9CD3E2335AAEC0019492E /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		2BF9CD412335C7530019492E /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		2BF9CD422335C7530019492E /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		2BF9CD432335C7530019492E /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		2BF9CD442335C7530019492E /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		2BF9CD452335C7530019492E /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		2BF9CD462335C7530019492E /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		2BF9CD472335C7530019492E /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		2BF9CD482335C7530019492E /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		2BF9CD492335C7530019492E /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		2BF9CD4A2335C7530019492E /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		2BF9CD4B2335C7530019492E /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		2BF9CD4C2335C7530019492E /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		2BF9CD4D2335C7530019492E /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		2BF9CD582335D89C0019492E /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2BF9CD5A2335E0570019492E /* foreman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = foreman.mp4; sourceTree = "<group>"; };
+		2BF9CD5B2335E0570019492E /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
+		2BF9CD5C2335E0570019492E /* ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ring.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +101,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF9CD34233501570019492E /* WFChatUIKit.framework in Frameworks */,
+				2BF9CD38233501570019492E /* WFChatClient.framework in Frameworks */,
+				2BF9CD36233501570019492E /* WFAVEngineKit.framework in Frameworks */,
+				2BF9CD3A233501570019492E /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +114,7 @@
 		2BF9CCF3233500620019492E = {
 			isa = PBXGroup;
 			children = (
+				2BF9CD11233501250019492E /* Frameworks */,
 				2BF9CCFE233500620019492E /* WFSwiftDemo */,
 				2BF9CCFD233500620019492E /* Products */,
 			);
@@ -54,14 +131,82 @@
 		2BF9CCFE233500620019492E /* WFSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2BF9CD402335C7530019492E /* AFNetworking */,
 				2BF9CCFF233500620019492E /* AppDelegate.swift */,
 				2BF9CD01233500620019492E /* ViewController.swift */,
 				2BF9CD03233500620019492E /* Main.storyboard */,
 				2BF9CD06233500640019492E /* Assets.xcassets */,
 				2BF9CD08233500640019492E /* LaunchScreen.storyboard */,
 				2BF9CD0B233500640019492E /* Info.plist */,
+				2BF9CD3D233502BE0019492E /* WFChat-Bridging-Header.h */,
+				2BF9CD3E2335AAEC0019492E /* MainTabViewController.swift */,
+				2BF9CD582335D89C0019492E /* Config.swift */,
+				2BF9CD5A2335E0570019492E /* foreman.mp4 */,
+				2BF9CD5B2335E0570019492E /* ring.caf */,
+				2BF9CD5C2335E0570019492E /* ring.mp3 */,
 			);
 			path = WFSwiftDemo;
+			sourceTree = "<group>";
+		};
+		2BF9CD11233501250019492E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2BF9CD12233501250019492E /* wfc.strings */,
+				2BF9CD14233501250019492E /* WFChatUIKit.xcassets */,
+				2BF9CD16233501250019492E /* WFChatUIKit.framework */,
+				2BF9CD17233501250019492E /* Stickers.bundle */,
+				2BF9CD18233501250019492E /* WFAVEngineKit.framework */,
+				2BF9CD19233501250019492E /* Emoj.plist */,
+				2BF9CD1A233501250019492E /* WFChatClient.framework */,
+				2BF9CD1B233501250019492E /* GoogleWebRTC */,
+				2BF9CD20233501250019492E /* WFCUShareMessageView.xib */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		2BF9CD1B233501250019492E /* GoogleWebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				2BF9CD1C233501250019492E /* LICENSE.md */,
+				2BF9CD1D233501250019492E /* Frameworks */,
+			);
+			path = GoogleWebRTC;
+			sourceTree = "<group>";
+		};
+		2BF9CD1D233501250019492E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2BF9CD1E233501250019492E /* frameworks */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		2BF9CD1E233501250019492E /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2BF9CD1F233501250019492E /* WebRTC.framework */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
+		2BF9CD402335C7530019492E /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				2BF9CD412335C7530019492E /* AFSecurityPolicy.h */,
+				2BF9CD422335C7530019492E /* AFNetworkReachabilityManager.h */,
+				2BF9CD432335C7530019492E /* AFURLSessionManager.h */,
+				2BF9CD442335C7530019492E /* AFURLRequestSerialization.h */,
+				2BF9CD452335C7530019492E /* AFURLResponseSerialization.m */,
+				2BF9CD462335C7530019492E /* AFHTTPSessionManager.m */,
+				2BF9CD472335C7530019492E /* AFURLResponseSerialization.h */,
+				2BF9CD482335C7530019492E /* AFURLSessionManager.m */,
+				2BF9CD492335C7530019492E /* AFURLRequestSerialization.m */,
+				2BF9CD4A2335C7530019492E /* AFNetworking.h */,
+				2BF9CD4B2335C7530019492E /* AFNetworkReachabilityManager.m */,
+				2BF9CD4C2335C7530019492E /* AFSecurityPolicy.m */,
+				2BF9CD4D2335C7530019492E /* AFHTTPSessionManager.h */,
+			);
+			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +219,7 @@
 				2BF9CCF8233500620019492E /* Sources */,
 				2BF9CCF9233500620019492E /* Frameworks */,
 				2BF9CCFA233500620019492E /* Resources */,
+				2BF9CD3C233501570019492E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -106,6 +252,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 2BF9CCF3233500620019492E;
 			productRefGroup = 2BF9CCFD233500620019492E /* Products */;
@@ -122,9 +269,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF9CD5D2335E0570019492E /* foreman.mp4 in Resources */,
 				2BF9CD0A233500640019492E /* LaunchScreen.storyboard in Resources */,
+				2BF9CD5F2335E0570019492E /* ring.mp3 in Resources */,
+				2BF9CD24233501250019492E /* Stickers.bundle in Resources */,
+				2BF9CD5E2335E0570019492E /* ring.caf in Resources */,
+				2BF9CD26233501250019492E /* Emoj.plist in Resources */,
 				2BF9CD07233500640019492E /* Assets.xcassets in Resources */,
+				2BF9CD28233501250019492E /* LICENSE.md in Resources */,
+				2BF9CD22233501250019492E /* WFChatUIKit.xcassets in Resources */,
 				2BF9CD05233500620019492E /* Main.storyboard in Resources */,
+				2BF9CD2A233501250019492E /* WFCUShareMessageView.xib in Resources */,
+				2BF9CD21233501250019492E /* wfc.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +292,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BF9CD02233500620019492E /* ViewController.swift in Sources */,
+				2BF9CD532335C7530019492E /* AFSecurityPolicy.m in Sources */,
 				2BF9CD00233500620019492E /* AppDelegate.swift in Sources */,
+				2BF9CD4F2335C7530019492E /* AFHTTPSessionManager.m in Sources */,
+				2BF9CD502335C7530019492E /* AFURLSessionManager.m in Sources */,
+				2BF9CD4E2335C7530019492E /* AFURLResponseSerialization.m in Sources */,
+				2BF9CD512335C7530019492E /* AFURLRequestSerialization.m in Sources */,
+				2BF9CD592335D89C0019492E /* Config.swift in Sources */,
+				2BF9CD522335C7530019492E /* AFNetworkReachabilityManager.m in Sources */,
+				2BF9CD3F2335AAEC0019492E /* MainTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +321,15 @@
 				2BF9CD09233500640019492E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2BF9CD12233501250019492E /* wfc.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BF9CD13233501250019492E /* zh-Hans */,
+				2BF9CD15233501250019492E /* en */,
+			);
+			name = wfc.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -284,6 +457,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZTJABWRJ5T;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/GoogleWebRTC/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = WFSwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,6 +470,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "WF-Chat.WFSwiftDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/WFSwiftDemo/WFChat-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,6 +482,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZTJABWRJ5T;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/GoogleWebRTC/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = WFSwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,6 +495,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "WF-Chat.WFSwiftDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/WFSwiftDemo/WFChat-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

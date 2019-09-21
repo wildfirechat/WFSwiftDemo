@@ -8,14 +8,57 @@
 
 import UIKit
 
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ConnectionStatusDelegate, WFAVEngineDelegate {
+    func didReceiveCall(_ session: WFAVCallSession!) {
+//        WFCUVideoViewController *videoVC = [[WFCUVideoViewController alloc] initWithSession:session];
+//        [[WFAVEngineKit sharedEngineKit] presentViewController:videoVC];
+        DispatchQueue.main.async(execute: {
+            let videoVC = WFCUVideoViewController();
+            WFAVEngineKit.shared()?.present(videoVC);
+        })
+    }
+    
+    func shouldStartRing(_ isIncoming: Bool) {
+        //start call ring.
+    }
+    
+    func shouldStopRing() {
+        //stop call ring.
+    }
+    
+    func onConnectionStatusChanged(_ status: ConnectionStatus) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (status == kConnectionStatusRejected || status == kConnectionStatusTokenIncorrect || status == kConnectionStatusSecretKeyMismatch) {
+//                [[WFCCNetworkService sharedInstance] disconnect:YES];
+//            } else if (status == kConnectionStatusLogout) {
+//                UIViewController *loginVC = [[WFCLoginViewController alloc] init];
+//                self.window.rootViewController = loginVC;
+//            }
+//            });
+        //if connect status is reject / token incorrect / key mismatch. should logout.
+    }
+    
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        WFCCNetworkService.sharedInstance()?.connectionStatusDelegate = self as ConnectionStatusDelegate;
+        WFCCNetworkService.sharedInstance()?.setServerAddress(IM_HOST, port: 80);
+        
+        WFAVEngineKit.shared()?.addIceServer("turn:turn.liyufan.win:3478", userName: "wfchat", password: "wfchat");
+        WFAVEngineKit.shared()?.setVideoProfile(WFAVVideoProfile.profile480P, swapWidthHeight: true);
+        WFAVEngineKit.shared()?.delegate = self;
+        
+        let bar = UINavigationBar.appearance();
+        bar.barTintColor = UIColor.init(displayP3Red: 0.1, green: 0.27, blue: 0.9, alpha: 0.9);
+        
+        bar.tintColor = UIColor.white;
+        
+        
         return true
     }
 
