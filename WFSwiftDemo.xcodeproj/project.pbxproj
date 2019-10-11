@@ -37,6 +37,7 @@
 		2BF9CD5D2335E0570019492E /* foreman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5A2335E0570019492E /* foreman.mp4 */; };
 		2BF9CD5E2335E0570019492E /* ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5B2335E0570019492E /* ring.caf */; };
 		2BF9CD5F2335E0570019492E /* ring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5C2335E0570019492E /* ring.mp3 */; };
+		2FE7A941235022880064C6FF /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE7A940235022880064C6FF /* CallKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -94,6 +95,7 @@
 		2BF9CD5A2335E0570019492E /* foreman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = foreman.mp4; sourceTree = "<group>"; };
 		2BF9CD5B2335E0570019492E /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
 		2BF9CD5C2335E0570019492E /* ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ring.mp3; sourceTree = "<group>"; };
+		2FE7A940235022880064C6FF /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				2BF9CD38233501570019492E /* WFChatClient.framework in Frameworks */,
 				2BF9CD36233501570019492E /* WFAVEngineKit.framework in Frameworks */,
 				2BF9CD3A233501570019492E /* WebRTC.framework in Frameworks */,
+				2FE7A941235022880064C6FF /* CallKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +154,7 @@
 		2BF9CD11233501250019492E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FE7A940235022880064C6FF /* CallKit.framework */,
 				2BF9CD12233501250019492E /* wfc.strings */,
 				2BF9CD14233501250019492E /* WFChatUIKit.xcassets */,
 				2BF9CD16233501250019492E /* WFChatUIKit.framework */,
