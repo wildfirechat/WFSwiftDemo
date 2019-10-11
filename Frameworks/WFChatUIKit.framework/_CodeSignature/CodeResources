@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		pyHewOPJP9PZMIOOwqUx1THpGhQ=
+		I3qTLCg/9gQC0TfcsqQEHRHAeGg=
 		</data>
 		<key>Emoj.plist</key>
 		<data>
@@ -46,15 +46,19 @@
 		</data>
 		<key>Headers/WFCUBlackListViewController.h</key>
 		<data>
-		t00Z/CwUs4NLQUA5y4oGGHywhto=
+		VNotzUkxAjzQK+eLTdHfliPytws=
 		</data>
 		<key>Headers/WFCUBrowserViewController.h</key>
 		<data>
 		4iTZzxToWIsyePnUMcOnihBdFQw=
 		</data>
+		<key>Headers/WFCUConfigManager.h</key>
+		<data>
+		q00IKRONmFiYzh504eV5MxoCkqk=
+		</data>
 		<key>Headers/WFCUContactListViewController.h</key>
 		<data>
-		D4cVzV9X8ppDojvK2AGI3fU4MJw=
+		tTbn6M53PbRujlXOT3+6kCtS4iU=
 		</data>
 		<key>Headers/WFCUConversationTableViewController.h</key>
 		<data>
@@ -106,11 +110,11 @@
 		</data>
 		<key>Headers/WFChatUIKit.h</key>
 		<data>
-		NpnrcFBw5JafCMbc1KXGmUox0WU=
+		6Z95fzkC/Huc5cA8qRbPKZjxzz0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ZjAswDEzw7KMd2120gP5okQvqZs=
+		wJl9OwHc5ONfuvM/0yY0Ix8ughU=
 		</data>
 		<key>LICENSE.md</key>
 		<data>
@@ -408,15 +412,19 @@
 		<data>
 		1QrY5WWnsmMhAS4SdWt/jjyNxVE=
 		</data>
-		<key>WFCUShareMessageView.nib</key>
+		<key>WFCUShareMessageView.nib/objects-13.0+.nib</key>
 		<data>
-		0OtIBpaaWFnRKG8UcXVe0ykLZkU=
+		+sAbtEVn+WlBsva2MXloNL6s32c=
+		</data>
+		<key>WFCUShareMessageView.nib/runtime.nib</key>
+		<data>
+		VlXipu+VMOYLcnSk180P6nv6T5E=
 		</data>
 		<key>en.lproj/wfc.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VZQ5w1f4chHCrvesudEobmqwWco=
+			GzobqXj1G5eK/9LVwpcU/AahvCs=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -425,7 +433,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2ZjcUW3imsCZUV9QGATau54VbJ0=
+			6JYbO4fGW+uNb1zr7FstAegO+pA=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -437,11 +445,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			pyHewOPJP9PZMIOOwqUx1THpGhQ=
+			I3qTLCg/9gQC0TfcsqQEHRHAeGg=
 			</data>
 			<key>hash2</key>
 			<data>
-			lo1OiCZ8r8PHCOObKd8DnrBCI61bmQ66jSusPN5p2CE=
+			SwOAF9+7fk55RxC4pvbkj/TVQcFc7mpRZBUtabvgS8E=
 			</data>
 		</dict>
 		<key>Emoj.plist</key>
@@ -547,11 +555,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			t00Z/CwUs4NLQUA5y4oGGHywhto=
+			VNotzUkxAjzQK+eLTdHfliPytws=
 			</data>
 			<key>hash2</key>
 			<data>
-			V7GmWjU8e7dG0oDNXKb3OsQ0WUS6qRAiP5aT1xDpuAo=
+			dihcV218JoJ7+e/0rgf45GdHkudkYWYWKSWTdMiHLV4=
 			</data>
 		</dict>
 		<key>Headers/WFCUBrowserViewController.h</key>
@@ -565,15 +573,26 @@
 			1C7IEK/ch75zrER9ZDd8ZqJBbeNZpwphOFj759WBUVM=
 			</data>
 		</dict>
+		<key>Headers/WFCUConfigManager.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			q00IKRONmFiYzh504eV5MxoCkqk=
+			</data>
+			<key>hash2</key>
+			<data>
+			yrTv8slHVgsFqV858Emo1lVaz3dr4Hy8cIsUXWXbLpY=
+			</data>
+		</dict>
 		<key>Headers/WFCUContactListViewController.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			D4cVzV9X8ppDojvK2AGI3fU4MJw=
+			tTbn6M53PbRujlXOT3+6kCtS4iU=
 			</data>
 			<key>hash2</key>
 			<data>
-			6XlwIGi+EWdt73jp+AtdY4swRsx3ndUKjdc/QJurgVk=
+			67s7+gTeJ4z58+4Gk6Ct9kv7GzWAMWOREKEKNRJ16SM=
 			</data>
 		</dict>
 		<key>Headers/WFCUConversationTableViewController.h</key>
@@ -712,11 +731,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NpnrcFBw5JafCMbc1KXGmUox0WU=
+			6Z95fzkC/Huc5cA8qRbPKZjxzz0=
 			</data>
 			<key>hash2</key>
 			<data>
-			azFB0W7ee6ov7HIQU3o4zRMhVqziVqQGBE6r5VMzdjM=
+			J48l49NeNMhT7pODvn3hCwdgYbcTYM6uHR9u5A8XuuA=
 			</data>
 		</dict>
 		<key>LICENSE.md</key>
@@ -1533,26 +1552,37 @@
 			hXOfy4nWnjF5sZ/kbXGh8/lQeE6vrQAQ5I3krmtkv1w=
 			</data>
 		</dict>
-		<key>WFCUShareMessageView.nib</key>
+		<key>WFCUShareMessageView.nib/objects-13.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0OtIBpaaWFnRKG8UcXVe0ykLZkU=
+			+sAbtEVn+WlBsva2MXloNL6s32c=
 			</data>
 			<key>hash2</key>
 			<data>
-			NRPQNzSnH/kWaMTA+GFv4+lKtsuAmFOSCsXD7o6o5Jc=
+			7rgHUIuh4QOp0RGwaDjD+mVeTtXrdFPAvxqzg9fVcgw=
+			</data>
+		</dict>
+		<key>WFCUShareMessageView.nib/runtime.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			VlXipu+VMOYLcnSk180P6nv6T5E=
+			</data>
+			<key>hash2</key>
+			<data>
+			AwBd4eT6NhIE92L3aCePLCNBtcixo1OaJf0EoXqjj8o=
 			</data>
 		</dict>
 		<key>en.lproj/wfc.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VZQ5w1f4chHCrvesudEobmqwWco=
+			GzobqXj1G5eK/9LVwpcU/AahvCs=
 			</data>
 			<key>hash2</key>
 			<data>
-			afiKh+AYQbWSN8EmiXvKZiNxkruUwhq/FXBT/c2vCOg=
+			1TzzQZblOKhNye6lbRnpH2Zmob7NqJBLw/y1eVtsEC4=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -1561,11 +1591,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2ZjcUW3imsCZUV9QGATau54VbJ0=
+			6JYbO4fGW+uNb1zr7FstAegO+pA=
 			</data>
 			<key>hash2</key>
 			<data>
-			e74FgJA1hO/sGQoDCEyKzgi3PuRYnpqLd1cQqQW/qYE=
+			Qfga2aPVzHS8SoOdvu3B4yofPEvee1VU+6xn/qNQRJQ=
 			</data>
 			<key>optional</key>
 			<true/>
