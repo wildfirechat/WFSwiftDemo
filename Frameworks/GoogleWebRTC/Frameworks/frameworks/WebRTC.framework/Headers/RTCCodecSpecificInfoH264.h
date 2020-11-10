@@ -19,8 +19,8 @@ typedef NS_ENUM(NSUInteger, RTCH264PacketizationMode) {
   RTCH264PacketizationModeSingleNalUnit        // Mode 0 - only single NALU allowed
 };
 
-RTC_EXPORT
-@interface RTCCodecSpecificInfoH264 : NSObject <RTCCodecSpecificInfo>
+RTC_OBJC_EXPORT
+@interface RTC_OBJC_TYPE (RTCCodecSpecificInfoH264) : NSObject <RTC_OBJC_TYPE(RTCCodecSpecificInfo)>
 
 @property(nonatomic, assign) RTCH264PacketizationMode packetizationMode;
 

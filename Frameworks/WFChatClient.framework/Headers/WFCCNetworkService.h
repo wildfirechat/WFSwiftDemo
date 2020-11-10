@@ -11,9 +11,11 @@
 
 #import <Foundation/Foundation.h>
 #import "WFCCMessage.h"
+#import "WFCCReadReport.h"
+#import "WFCCDeliveryReport.h"
 
 extern const NSString *SDKVERSION;
-#pragma mark - 频道通知定义
+#pragma mark - 通知定义
 //群组信息更新通知
 extern NSString *kGroupInfoUpdated;
 //群组成员更新通知
@@ -55,6 +57,19 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
   kConnectionStatusReceiving = 2
 };
 
+
+/**
+平台枚举值
+
+ //Platform_Android = 2,
+ //Platform_Windows = 3,
+ //Platform_OSX = 4,
+ //Platform_WEB = 5,
+ //Platform_WX = 6,
+*/
+#define Platform_iOS 1
+
+    
 #pragma mark - 连接状态&消息监听
 /**
  连接状态的监听
@@ -85,6 +100,20 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 
 @optional
 - (void)onRecallMessage:(long long)messageUid;
+- (void)onDeleteMessage:(long long)messageUid;
+
+/**
+消息已送达到目标用户的回调
+
+@param delivereds 送达报告
+*/
+
+- (void)onMessageDelivered:(NSArray<WFCCDeliveryReport *> *)delivereds;
+
+/**
+消息已读的监听
+*/
+- (void)onMessageReaded:(NSArray<WFCCReadReport *> *)readeds;
 @end
 
 /**
@@ -99,6 +128,19 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
  @return 是否拦截，如果拦截该消息，则ReceiveMessageDelegate回调不会再收到此消息
  */
 - (BOOL)onReceiveMessage:(WFCCMessage *)message;
+@end
+
+/**
+ 会议事件的监听
+ */
+@protocol ConferenceEventDelegate <NSObject>
+
+/**
+ 会议事件的回调
+
+ @param event 事件
+ */
+- (void)onConferenceEvent:(NSString *)event;
 @end
 
 #pragma mark - 连接服务
@@ -124,6 +166,10 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
  */
 @property(nonatomic, weak) id<ReceiveMessageDelegate> receiveMessageDelegate;
 
+/**
+会议事件监听
+*/
+@property(nonatomic, weak) id<ConferenceEventDelegate> conferenceEventDelegate;
 /**
  当前是否处于登陆状态
  */
@@ -155,6 +201,11 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 + (void)stopLog;
 
 /**
+获取日志文件路径
+*/
++ (NSArray<NSString *> *)getLogFilesPath;
+
+/**
  获取客户端id
  
  @return 客户端ID
@@ -162,7 +213,7 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 - (NSString *)getClientId;
 
 /**
- 连接服务器
+ 连接服务器，需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。另外不能多次connect，如果需要切换用户请先disconnect，然后3秒钟之后再connect（如果是用户手动登录可以不用等，因为用户操作很难3秒完成，如果程序自动切换请等3秒）
 
  @param userId 用户Id
  @param token 密码
@@ -174,16 +225,18 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 /**
  断开连接
 
- @param clearSession 是否清除Session信息
+ @param disablePush   是否停止推送，clearSession为YES时无意义。
+ @param clearSession 是否清除Session信息，如果清楚本地历史消息将全部清除。
  */
-- (void)disconnect:(BOOL)clearSession;
+- (void)disconnect:(BOOL)disablePush clearSession:(BOOL)clearSession;
 
 /**
- 设置服务器信息
+ 设置服务器信息。host可以是IP，可以是域名，如果是域名的话只支持主域名或www域名，二级域名不支持！
+ 例如：example.com或www.example.com是支持的；xx.example.com或xx.yy.example.com是不支持的。
 
  @param host 服务器地址
  */
-- (void)setServerAddress:(NSString *)host port:(uint)port;
+- (void)setServerAddress:(NSString *)host;
 
 /**
  设置当前设备的device token

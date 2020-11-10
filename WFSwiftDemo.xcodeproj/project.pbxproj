@@ -37,6 +37,10 @@
 		2BF9CD5D2335E0570019492E /* foreman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5A2335E0570019492E /* foreman.mp4 */; };
 		2BF9CD5E2335E0570019492E /* ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5B2335E0570019492E /* ring.caf */; };
 		2BF9CD5F2335E0570019492E /* ring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2BF9CD5C2335E0570019492E /* ring.mp3 */; };
+		2F6DBA7E255ADF9700BAE796 /* ZLPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6DBA7C255ADF8200BAE796 /* ZLPhotoBrowser.framework */; };
+		2F6DBA7F255ADF9800BAE796 /* ZLPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6DBA7C255ADF8200BAE796 /* ZLPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6DBA87255AE1E700BAE796 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6DBA85255AE1DE00BAE796 /* SDWebImage.framework */; };
+		2F6DBA88255AE1E700BAE796 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6DBA85255AE1DE00BAE796 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2FE7A941235022880064C6FF /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE7A940235022880064C6FF /* CallKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,9 +51,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2F6DBA7F255ADF9800BAE796 /* ZLPhotoBrowser.framework in Embed Frameworks */,
 				2BF9CD35233501570019492E /* WFChatUIKit.framework in Embed Frameworks */,
 				2BF9CD39233501570019492E /* WFChatClient.framework in Embed Frameworks */,
 				2BF9CD37233501570019492E /* WFAVEngineKit.framework in Embed Frameworks */,
+				2F6DBA88255AE1E700BAE796 /* SDWebImage.framework in Embed Frameworks */,
 				2BF9CD3B233501570019492E /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -95,6 +101,8 @@
 		2BF9CD5A2335E0570019492E /* foreman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = foreman.mp4; sourceTree = "<group>"; };
 		2BF9CD5B2335E0570019492E /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
 		2BF9CD5C2335E0570019492E /* ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ring.mp3; sourceTree = "<group>"; };
+		2F6DBA7C255ADF8200BAE796 /* ZLPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZLPhotoBrowser.framework; path = Frameworks/ZLPhotoBrowser.framework; sourceTree = SOURCE_ROOT; };
+		2F6DBA85255AE1DE00BAE796 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		2FE7A940235022880064C6FF /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -107,6 +115,8 @@
 				2BF9CD38233501570019492E /* WFChatClient.framework in Frameworks */,
 				2BF9CD36233501570019492E /* WFAVEngineKit.framework in Frameworks */,
 				2BF9CD3A233501570019492E /* WebRTC.framework in Frameworks */,
+				2F6DBA87255AE1E700BAE796 /* SDWebImage.framework in Frameworks */,
+				2F6DBA7E255ADF9700BAE796 /* ZLPhotoBrowser.framework in Frameworks */,
 				2FE7A941235022880064C6FF /* CallKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +147,7 @@
 				2BF9CD402335C7530019492E /* AFNetworking */,
 				2BF9CCFF233500620019492E /* AppDelegate.swift */,
 				2BF9CD01233500620019492E /* ViewController.swift */,
+				2F6DBA7C255ADF8200BAE796 /* ZLPhotoBrowser.framework */,
 				2BF9CD03233500620019492E /* Main.storyboard */,
 				2BF9CD06233500640019492E /* Assets.xcassets */,
 				2BF9CD08233500640019492E /* LaunchScreen.storyboard */,
@@ -154,6 +165,7 @@
 		2BF9CD11233501250019492E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2F6DBA85255AE1DE00BAE796 /* SDWebImage.framework */,
 				2FE7A940235022880064C6FF /* CallKit.framework */,
 				2BF9CD12233501250019492E /* wfc.strings */,
 				2BF9CD14233501250019492E /* WFChatUIKit.xcassets */,

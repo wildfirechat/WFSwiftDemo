@@ -10,5 +10,8 @@
 
 @interface WFCUGeneralSwitchTableViewCell : UITableViewCell
 @property(nonatomic, assign)BOOL on;
-@property(nonatomic, strong)void (^onSwitch)(BOOL value, void (^)(BOOL success));
+@property(nonatomic, assign)int type;
+@property(nonatomic, strong)void (^onSwitch)(BOOL value, int type, void (^handleBlock)(BOOL success));
+
+@property(nonatomic, strong)UISwitch *valueSwitch;
 @end

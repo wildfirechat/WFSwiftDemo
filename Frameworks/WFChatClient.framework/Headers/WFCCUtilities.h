@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WFCCIMService.h"
 
 @interface WFCCUtilities : NSObject
 
@@ -40,4 +41,12 @@
 + (NSString *)getDocumentPathWithComponent:(NSString *)componentPath;
 
 + (CGSize)imageScaleSize:(CGSize)imageSize targetSize:(CGSize)targetSize thumbnailPoint:(CGPoint *)thumbnailPoint;
+
+
++ (UIImage *)imageWithRightOrientation:(UIImage *)aImage;
+
++ (NSString *)getGroupGridPortrait:(NSString *)groupId
+                             width:(int)width
+                generateIfNotExist:(BOOL)generateIfNotExist
+               defaultUserPortrait:(UIImage *(^)(NSString *userId))defaultUserPortraitBlock;
 @end

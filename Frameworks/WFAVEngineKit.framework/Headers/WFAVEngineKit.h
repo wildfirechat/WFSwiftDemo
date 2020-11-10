@@ -20,6 +20,11 @@ FOUNDATION_EXPORT const unsigned char WFAVEngineKitVersionString[];
 
 @class WFAVCallSession;
 
+#pragma mark - 通知定义
+//通话状态更新通知
+extern NSString *kCallStateUpdated;
+
+
 #pragma mark - 枚举值定义
 /**
  通话状态
@@ -41,14 +46,16 @@ typedef NS_ENUM(NSInteger, WFAVEngineState) {
 /**
  缩放模式
 
- - kWFAVVideoScalingTypeAspectFit: 自适应
- - kWFAVVideoScalingTypeAspectFill: 拉伸
- - kWFAVVideoScalingTypeAspectBalanced: 平衡
+ - kWFAVVideoScalingTypeAspectFit: 填满屏幕，裁去多余部分。如果视图和视频的方向不一致，则缩放模式自动采用kWFAVVideoScalingTypeAspectFill模式，因为如果要是裁边会裁去过多内容。
+ - kWFAVVideoScalingTypeAspectFill: 显示所有内容，背景会留黑边
+ - kWFAVVideoScalingTypeAspectBalanced: 平衡，Fit和Fill折中
+ - kWFAVVideoScalingTypeScaleFill: 拉伸填满
  */
 typedef NS_ENUM(NSInteger, WFAVVideoScalingType) {
     kWFAVVideoScalingTypeAspectFit,
     kWFAVVideoScalingTypeAspectFill,
-    kWFAVVideoScalingTypeAspectBalanced
+    kWFAVVideoScalingTypeAspectBalanced,
+    kWFAVVideoScalingTypeScaleFill
 };
 
 /**
@@ -130,7 +137,11 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
   kWFAVCallEndReasonRemoteHangup,
   kWFAVCallEndReasonOpenCameraFailure,
   kWFAVCallEndReasonTimeout,
-  kWFAVCallEndReasonAcceptByOtherClient
+  kWFAVCallEndReasonAcceptByOtherClient,
+  kWFAVCallEndReasonAllLeft,
+  kWFAVCallEndReasonRemoteBusy,
+  kWFAVCallEndReasonRemoteTimeout,
+  kWFAVCallEndReasonRemoteNetworkError
 };
 
 #pragma mark - 通话监听
@@ -172,6 +183,16 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
  */
 - (void)didChangeState:(WFAVEngineState)state;
 
+//多人音视频版本会调用到
+- (void)didParticipantJoined:(NSString *)userId;
+
+//多人音视频版本会调用到
+- (void)didParticipantConnected:(NSString *)userId;
+
+//多人音视频版本会调用到
+- (void)didParticipantLeft:(NSString *)userId withReason:(WFAVCallEndReason)reason;
+
+
 /**
  通话结束的回调
 
@@ -212,8 +233,25 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
 
  @param remoteVideoTrack 对方视频流
  */
-- (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack;
+- (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack fromUser:(NSString *)targetId;
 
+
+@optional
+/**
+语音音量报告
+
+@param volume 音量
+@param userId 用户Id
+*/
+- (void)didReportAudioVolume:(NSInteger)volume ofUser:(NSString *_Nonnull)userId;
+
+/**
+用户类型改变
+
+@param audience 是否是观众
+@param userId 用户Id
+*/
+- (void)didChangeType:(BOOL)audience ofUser:(NSString *_Nonnull)userId;
 @end
 
 #pragma mark - 通话引擎
@@ -230,6 +268,20 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
  */
 + (instancetype)sharedEngineKit;
 
+/*
+ 是否支持多人通话
+ */
+@property(nonatomic, assign, readonly)BOOL supportMultiCall;
+
+/*
+ 最大音频通话路数，单人音视频默认为2，无法修改。
+ */
+@property(nonatomic, assign)int maxAudioCallCount;
+
+/*
+最大视频通话路数，单人音视频默认为2，无法修改。
+*/
+@property(nonatomic, assign)int maxVideoCallCount;
 /**
  添加ICE服务地址和鉴权
 
@@ -259,15 +311,43 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
 /**
  发起通话
 
- @param clientId 对方用户ID
+ @param targetIds 接收用户ID，本sdk只支持一个用户
  @param conversation 通话所在会话
  @param sessionDelegate 通话Session的监听
  @return 通话Session
  */
-- (WFAVCallSession *)startCall:(NSString *)clientId
+- (WFAVCallSession *)startCall:(NSArray<NSString *> *)targetIds
                      audioOnly:(BOOL)audioOnly
                   conversation:(WFCCConversation *)conversation
                sessionDelegate:(id<WFAVCallSessionDelegate>)sessionDelegate;
+
+
+/* 是否支持音视频会议 */
+@property(nonatomic, assign, readonly)BOOL supportConference;
+
+/* 此函数没有意义，仅为了兼容UI代码 */
+- (void)listConference:(void(^_Nullable)(NSArray<NSDictionary *> * _Nullable conferences))successBlock
+                 error:(void(^_Nullable)(int error_code))errorBlock;
+
+/* 此函数没有意义，仅为了兼容UI代码 */
+- (WFAVCallSession *_Nonnull)startConference:(NSString *_Nullable)callId
+                                   audioOnly:(BOOL)audioOnly
+                                         pin:(NSString *_Nonnull)pin
+                                        host:(NSString *_Nullable)host
+                                       title:(NSString *_Nullable)title
+                                        desc:(NSString *_Nullable)desc
+                                    audience:(BOOL)audience
+                             sessionDelegate:(id<WFAVCallSessionDelegate>_Nonnull)sessionDelegate;
+
+/* 此函数没有意义，仅为了兼容UI代码 */
+- (WFAVCallSession *_Nonnull)joinConference:(NSString *_Nonnull)callId
+                                  audioOnly:(BOOL)audioOnly
+                                        pin:(NSString *_Nonnull)pin
+                                       host:(NSString *_Nullable)host
+                                      title:(NSString *_Nullable)title
+                                       desc:(NSString *_Nullable)desc
+                                   audience:(BOOL)audience
+                             sessionDelegate:(id<WFAVCallSessionDelegate>_Nonnull)sessionDelegate;
 
 /**
  开启画面预览
@@ -292,6 +372,14 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
  取消通话界面
  */
 - (void)dismissViewController:(UIViewController *)viewController;
+@end
+
+@interface WFAVParticipantProfile : NSObject
+@property(nonatomic, strong, readonly)NSString *userId;
+@property(nonatomic, assign, readonly)long long startTime;
+@property(nonatomic, assign, readonly)WFAVEngineState state;
+@property(nonatomic, assign, readonly)BOOL videoMuted;
+@property(nonatomic, assign, readonly)BOOL audience;
 @end
 
 #pragma mark - 通话Session
@@ -351,9 +439,70 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
 @property(nonatomic, assign, readonly)WFAVCallEndReason endReason;
 
 /**
- 是否是语音电话
+ 是否是扬声器
  */
 @property(nonatomic, assign, getter=isSpeaker, readonly)BOOL speaker;
+
+/**
+是否是会议
+*/
+@property(nonatomic, assign, getter=isConference, readonly) BOOL conference;
+
+/**
+是否观众，仅当会议有效
+*/
+@property(nonatomic, assign, getter=isAudience, readonly) BOOL audience;
+
+/**
+会议新加入成名缺省状态，是否观众，仅当会议有效
+*/
+@property(nonatomic, assign) BOOL defaultAudience;
+
+/**
+会议密码，仅当会议有效
+*/
+@property(nonatomic, strong) NSString * _Nullable pin;
+
+/**
+会议主持人，仅当会议有效
+*/
+@property(nonatomic, strong) NSString * _Nullable host;
+
+/**
+会议标题，仅当会议有效
+*/
+@property(nonatomic, strong) NSString * _Nullable title;
+
+/**
+会议描述，仅当会议有效
+*/
+@property(nonatomic, strong) NSString * _Nullable desc;
+
+
+/**
+通话成员（不包含自己）
+*/
+@property(nonatomic, assign, readonly)NSArray<NSString *> *participantIds;
+@property(nonatomic, assign, readonly)NSString *initiator;
+
+- (BOOL)isParticipant:(NSString *)userId;
+
+/**
+通话成员（不包含自己）
+*/
+@property(nonatomic, assign, readonly) NSArray<WFAVParticipantProfile *> *participants;
+@property(nonatomic, assign, readonly) WFAVParticipantProfile *myProfile;
+
+- (void)inviteNewParticipants:(NSArray<NSString *>*)targetIds;
+/**
+是否是关掉视频
+*/
+@property(nonatomic, assign, getter=isVideoMuted, readonly) BOOL videoMuted;
+
+/**
+是否是关掉音频
+*/
+@property(nonatomic, assign, getter=isAudioMuted, readonly) BOOL audioMuted;
 
 /**
  接听通话
@@ -408,6 +557,6 @@ typedef NS_ENUM(NSInteger, WFAVCallEndReason) {
  @param videoContainerView 本地视频视图Container
  @param scalingType 缩放模式
  */
-- (void)setupRemoteVideoView:(UIView *)videoContainerView scalingType:(WFAVVideoScalingType)scalingType;
+- (void)setupRemoteVideoView:(UIView *)videoContainerView scalingType:(WFAVVideoScalingType)scalingType forUser:(NSString *)targetId;
 @end
 

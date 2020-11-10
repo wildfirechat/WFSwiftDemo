@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ConnectionStatusDelegate,
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         WFCCNetworkService.sharedInstance()?.connectionStatusDelegate = self as ConnectionStatusDelegate;
-        WFCCNetworkService.sharedInstance()?.setServerAddress(IM_HOST, port: 80);
+        WFCCNetworkService.sharedInstance()?.setServerAddress(IM_HOST);
         
         WFAVEngineKit.shared()?.addIceServer("turn:turn.liyufan.win:3478", userName: "wfchat", password: "wfchat");
         WFAVEngineKit.shared()?.setVideoProfile(WFAVVideoProfile.profile480P, swapWidthHeight: true);

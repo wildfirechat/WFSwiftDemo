@@ -21,7 +21,7 @@
 /**
  对端用户Id
  */
-@property (nonatomic, strong)NSString *targetId;
+@property (nonatomic, strong)NSArray<NSString *> *targetIds;
 /**
  * 开始时间
  */
@@ -48,5 +48,7 @@ WFAVCallEndReason
  * 是否仅音频
  */
 @property (nonatomic, assign, getter=isAudioOnly)BOOL audioOnly;
+
+@property (nonatomic, strong)NSString *pin;
 
 @end

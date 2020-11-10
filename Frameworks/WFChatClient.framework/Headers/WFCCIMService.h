@@ -19,6 +19,8 @@
 #import "WFCCChatroomMemberInfo.h"
 #import "WFCCUnreadCount.h"
 #import "WFCCChannelInfo.h"
+#import "WFCCPCOnlineInfo.h"
+#import "WFCCFileRecord.h"
 
 #pragma mark - 频道通知定义
 //发送消息状态通知
@@ -26,6 +28,10 @@ extern NSString *kSendingMessageStatusUpdated;
 extern NSString *kConnectionStatusChanged;
 extern NSString *kReceiveMessages;
 extern NSString *kRecallMessages;
+extern NSString *kDeleteMessages;
+extern NSString *kMessageDelivered;
+extern NSString *kMessageReaded;
+
 #pragma mark - 枚举值定义
 /**
  修改个人信息的内容
@@ -59,7 +65,9 @@ typedef NS_ENUM(NSInteger, ModifyGroupInfoType) {
     Modify_Group_Mute = 3,
     Modify_Group_JoinType = 4,
     Modify_Group_PrivateChat = 5,
-    Modify_Group_Searchable = 6
+    Modify_Group_Searchable = 6,
+    Modify_Group_History_Message = 7,
+    Modify_Group_Max_Member_Count = 8
 };
 
 
@@ -101,10 +109,51 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
     
     //不能直接使用，协议栈内会使用此值
     UserSettingScope_PC_Online = 10,
+    //不能直接使用，协议栈内会使用此值
+    UserSettingScope_Conversation_Readed = 11,
+    //不能直接使用，协议栈内会使用此值
+    UserSettingScope_WebOnline = 12,
+    //不能直接使用，协议栈内会使用此值
+    UserSettingScope_DisableRecipt = 13,
+    //不能直接使用
+    UserSettingScope_Favourite_User = 14,
+    //不能直接使用
+    UserSettingScope_Mute_When_PC_Online = 15,
+    //不能直接使用
+    UserSettingScope_Lines_Readed = 16,
+    //不能直接使用
+    UserSettingScope_No_Disturbing = 17,
     
     
     //自定义用户设置，请使用1000以上的key
     UserSettingScope_Custom_Begin = 1000
+} ;
+
+
+/**
+ 搜索用户类型
+
+ - SearchUserType_General: 模糊搜索diaplayName，精确匹配name和电话
+ - SearchUserType_Name_Mobile: 精确匹配name和电话
+ - SearchUserType_Name: 精确匹配name
+ - SearchUserType_Mobile: 精确匹配电话
+ */
+typedef NS_ENUM(NSInteger, WFCCSearchUserType) {
+    SearchUserType_General,
+    SearchUserType_Name_Mobile,
+    SearchUserType_Name,
+    SearchUserType_Mobile,
+} ;
+
+typedef NS_ENUM(NSInteger, WFCCPlatformType) {
+    PlatformType_UNSET = 0,
+    PlatformType_iOS = 1,
+    PlatformType_Android = 2,
+    PlatformType_Windows = 3,
+    PlatformType_OSX = 4,
+    PlatformType_WEB = 5,
+    PlatformType_WX = 6,
+    PlatformType_Linux = 7
 } ;
 
 #pragma mark - 用户源
@@ -117,9 +166,21 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (WFCCUserInfo *)getUserInfo:(NSString *)userId
                       refresh:(BOOL)refresh;
 
+- (WFCCUserInfo *)getUserInfo:(NSString *)userId inGroup:(NSString *)groupId refresh:(BOOL)refresh;
+
+- (NSArray<WFCCUserInfo *> *)getUserInfos:(NSArray<NSString *> *)userIds inGroup:(NSString *)groupId;
+
+- (void)getUserInfo:(NSString *)userId
+            refresh:(BOOL)refresh
+            success:(void(^)(WFCCUserInfo *userInfo))successBlock
+              error:(void(^)(int errorCode))errorBlock;
+
 - (void)searchUser:(NSString *)keyword
+        searchType:(WFCCSearchUserType)searchType
+              page:(int)page
            success:(void(^)(NSArray<WFCCUserInfo *> *machedUsers))successBlock
              error:(void(^)(int errorCode))errorBlock;
+
 
 -(void)modifyMyInfo:(NSDictionary<NSNumber */*ModifyMyInfoType*/, NSString *> *)values
             success:(void(^)(void))successBlock
@@ -215,6 +276,24 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (void)setConversation:(WFCCConversation *)conversation
                   draft:(NSString *)draft;
 
+/**
+ 更新会话的时间
+ 
+ @param conversation 会话
+ @param timestamp 时间戳
+ */
+- (void)setConversation:(WFCCConversation *)conversation
+              timestamp:(long long)timestamp;
+
+/**
+ 获取会话列表第一条未读消息Id
+ 
+ @param conversation 会话
+ 
+ @return 会话中最早一条未读消息Id
+ */
+- (long)getFirstUnreadMessageId:(WFCCConversation *)conversation;
+
 #pragma mark - 未读数相关
 /**
  获取指定类型会话的未读数
@@ -235,12 +314,18 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (WFCCUnreadCount *)getUnreadCount:(WFCCConversation *)conversation;
 
 /**
- 清空会话未读数
+ 清空会话未读数。仅清理本地消息的未读数，没有同步到其他端，如果多端使用，请避免使用此方法
  
  @param conversation 会话
  */
-- (void)clearUnreadStatus:(WFCCConversation *)conversation;
+- (void)clearUnreadStatus:(WFCCConversation *)conversation DEPRECATED_MSG_ATTRIBUTE("use clearUnreadStatus:lines: instead");
 
+/**
+清空会话未读数
+
+@param conversationTypes 会话类型
+@param lines 线路
+*/
 - (void)clearUnreadStatus:(NSArray<NSNumber *> *)conversationTypes
                               lines:(NSArray<NSNumber *> *)lines;
 
@@ -250,9 +335,28 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (void)clearAllUnreadStatus;
 
 /**
- 设置媒体消息已播放
+ 设置媒体消息已播放（已经放开限制，所有消息都可以设置为已读状态）
+ 
+ @param messageId 消息ID
  */
 - (void)setMediaMessagePlayed:(long)messageId;
+
+/**
+获取会话内已读状态
+
+@param conversation 会话
+@return 会话的每个用户的已读时间
+*/
+- (NSMutableDictionary<NSString *, NSNumber *> *)getConversationRead:(WFCCConversation *)conversation;
+
+/**
+获取会话内已送达状态
+
+@param conversation 会话
+@return 会话的每个用户的已送达时间
+*/
+- (NSMutableDictionary<NSString *, NSNumber *> *)getMessageDelivery:(WFCCConversation *)conversation;
+
 #pragma mark - 消息相关
 /**
  获取消息
@@ -266,6 +370,22 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  */
 - (NSArray<WFCCMessage *> *)getMessages:(WFCCConversation *)conversation
                            contentTypes:(NSArray<NSNumber *> *)contentTypes
+                                   from:(NSUInteger)fromIndex
+                                  count:(NSInteger)count
+                               withUser:(NSString *)user;
+
+/**
+ 获取消息
+ @discuss 获取从fromIndex起count条旧的消息。如果想要获取比fromIndex新的消息，count传负值。
+ 
+ @param conversation 会话
+ @param messageStatus 消息状态WFCCMessageStatus
+ @param fromIndex 起始index
+ @param count 总数
+ @return 消息实体
+ */
+- (NSArray<WFCCMessage *> *)getMessages:(WFCCConversation *)conversation
+                          messageStatus:(NSArray<NSNumber *> *)messageStatus
                                    from:(NSUInteger)fromIndex
                                   count:(NSInteger)count
                                withUser:(NSString *)user;
@@ -295,15 +415,50 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  @param messageStatus 消息状态
  @param fromIndex 起始index
  @param count 总数
+ @param user 对话用户
  @return 消息实体
  */
 - (NSArray<WFCCMessage *> *)getMessages:(NSArray<NSNumber *> *)conversationTypes
-                                           lines:(NSArray<NSNumber *> *)lines
-                                   messageStatus:(WFCCMessageStatus)messageStatus
-                                            from:(NSUInteger)fromIndex
-                                           count:(NSInteger)count
-                                        withUser:(NSString *)user;
+                                  lines:(NSArray<NSNumber *> *)lines
+                          messageStatus:(NSArray<NSNumber *> *)messageStatus
+                                   from:(NSUInteger)fromIndex
+                                  count:(NSInteger)count
+                               withUser:(NSString *)user;
 
+/**
+ 获取用户会话消息
+ @discuss 获取从fromIndex起count条旧的消息。如果想要获取比fromIndex新的消息，count传负值。
+ 
+ @param userId 用户ID
+ @param conversation 会话
+ @param contentTypes 消息类型
+ @param fromIndex 起始index
+ @param count 总数
+ @return 消息实体
+ */
+- (NSArray<WFCCMessage *> *)getUserMessages:(NSString *)userId
+                               conversation:(WFCCConversation *)conversation
+                               contentTypes:(NSArray<NSNumber *> *)contentTypes
+                                       from:(NSUInteger)fromIndex
+                                      count:(NSInteger)count;
+
+/**
+ 获取用户某类会话信息
+ 
+ @param userId 用户ID
+ @param conversationTypes 会话类型
+ @param lines 默认传 @[@(0)]
+ @param contentTypes 消息类型
+ @param fromIndex 起始index
+ @param count 总数
+ @return 消息实体
+ */
+- (NSArray<WFCCMessage *> *)getUserMessages:(NSString *)userId
+                          conversationTypes:(NSArray<NSNumber *> *)conversationTypes
+                                      lines:(NSArray<NSNumber *> *)lines
+                               contentTypes:(NSArray<NSNumber *> *)contentTypes
+                                       from:(NSUInteger)fromIndex
+                                      count:(NSInteger)count;
 /**
  获取服务器消息
  
@@ -337,13 +492,36 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 /**
  搜索消息
  
- @param conversation 会话
+ @param conversation 会话，如果为空将搜索所有会话
  @param keyword 关键词
+ @param desc order
+ @param offset offset
+ @param limit limit
  @return 命中的消息
  */
 - (NSArray<WFCCMessage *> *)searchMessage:(WFCCConversation *)conversation
-                                  keyword:(NSString *)keyword;
+                                  keyword:(NSString *)keyword
+                                    order:(BOOL)desc
+                                    limit:(int)limit
+                                   offset:(int)offset;
 
+/**
+ 获取某类会话信息
+ 
+ @param conversationTypes 会话类型
+ @param lines 默认传 @[@(0)]
+ @param contentTypes 消息类型
+ @param keyword 关键字
+ @param fromIndex 起始index
+ @param count 总数
+ @return 消息实体
+ */
+- (NSArray<WFCCMessage *> *)searchMessage:(NSArray<NSNumber *> *)conversationTypes
+                                    lines:(NSArray<NSNumber *> *)lines
+                             contentTypes:(NSArray<NSNumber *> *)contentTypes
+                                  keyword:(NSString *)keyword
+                                     from:(NSUInteger)fromIndex
+                                    count:(NSInteger)count;
 /**
  发送消息
 
@@ -446,6 +624,20 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
                    success:(void(^)(long long messageUid, long long timestamp))successBlock
                   progress:(void(^)(long uploaded, long total))progressBlock
                      error:(void(^)(int error_code))errorBlock;
+
+/**
+ 发送已保存消息，消息状态必须是发送中或者发送失败
+
+ @param message 已经存储在本地待发送的消息
+ @param expireDuration 消息的有效期，0不限期，单位秒
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ @return 协议栈是否可以发送
+ */
+- (BOOL)sendSavedMessage:(WFCCMessage *)message
+          expireDuration:(int)expireDuration
+                 success:(void(^)(long long messageUid, long long timestamp))successBlock
+                   error:(void(^)(int error_code))errorBlock;
 /**
  撤回消息
  
@@ -476,6 +668,24 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
               error:(void(^)(int error_code))errorBlock;
 
 /**
+ 同步上传媒体(图片、语音、文件等)，成功或者失败之后才会返回
+ 
+ @param fileName 文件名，可为空
+ @param mediaData 媒体信息
+ @param mediaType 媒体类型
+ @param successBlock 成功的回调
+ @param progressBlock 上传进度的回调，注意仅当媒体内容大于300K才会有回调
+ @param errorBlock 失败的回调
+ 
+ @return 是否上传成功
+ */
+- (BOOL)syncUploadMedia:(NSString *)fileName
+              mediaData:(NSData *)mediaData
+              mediaType:(WFCCMediaType)mediaType
+                success:(void(^)(NSString *remoteUrl))successBlock
+               progress:(void(^)(long uploaded, long total))progressBlock
+                  error:(void(^)(int error_code))errorBlock;
+/**
  删除消息
  
  @param messageId 消息ID
@@ -489,6 +699,14 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  @param conversation 会话
  */
 - (void)clearMessages:(WFCCConversation *)conversation;
+
+/**
+ 删除会话中的before之前的旧消息。
+ 
+ @param conversation 会话，如果conversation为nil，则清除所有会话的消息。
+ @param before 时间点，单位是毫秒
+ */
+- (void)clearMessages:(WFCCConversation *)conversation before:(int64_t)before;
 
 /**
  注册自定义消息类型
@@ -523,7 +741,7 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
              serverTime:(long long)serverTime;
 
 /**
- 更新消息内容
+ 更新消息内容。只更新本地消息内容，无法更新服务器和远端。
  
  @param messageId 消息ID
  @param content 消息内容
@@ -531,6 +749,31 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (void)updateMessage:(long)messageId
               content:(WFCCMessageContent *)content;
 
+/**
+更新消息状态，需要确保状态跟消息的方向相对应。一般情况下协议栈会自动处理好，不建议客户手动操作状态。。只更新本地消息内容，无法更新服务器和远端。
+
+@param messageId 消息ID
+@param status 消息状态
+ 
+@return YES 更新成功。NO 消息不存在，或者状态与消息方向不匹配
+*/
+- (bool)updateMessage:(long)messageId status:(WFCCMessageStatus)status;
+
+/**
+ 插入消息。只插入到本地，无法更新服务器和远端。
+ 
+ @param message 待插入的消息
+ @return 插入消息的id
+ */
+- (long)insertMessage:(WFCCMessage *)message;
+
+/**
+ 获取会话的消息数
+ 
+ @param conversation 会话。
+ @return 会话的消息数。
+ */
+- (int)getMessageCount:(WFCCConversation *)conversation;
 #pragma mark - 用户相关
 /**
  获取用户信息
@@ -566,13 +809,29 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  搜索用户
  
  @param keyword 关键词
+ @param searchType 搜索类型
+ @param page page
  @param successBlock 成功的回调
  @param errorBlock 失败的回调
  */
 - (void)searchUser:(NSString *)keyword
+        searchType:(WFCCSearchUserType)searchType
+              page:(int)page
            success:(void(^)(NSArray<WFCCUserInfo *> *machedUsers))successBlock
              error:(void(^)(int errorCode))errorBlock;
 
+/**
+ 获取用户信息
+ 
+ @param userId 用户ID
+ @param refresh 是否强制从服务器更新，如果本地没有或者强制，会从服务器刷新，然后发出通知kUserInfoUpdated。
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)getUserInfo:(NSString *)userId
+            refresh:(BOOL)refresh
+            success:(void(^)(WFCCUserInfo *userInfo))successBlock
+            error:(void(^)(int errorCode))errorBlock;
 #pragma mark - 好友相关
 /**
  查询用户和当前用户是否是好友关系
@@ -620,6 +879,15 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (NSArray<WFCCFriendRequest *> *)getOutgoingFriendRequest;
 
 /**
+ 获取某一条好友请求记录
+ @param uerId 对方用户ID
+ @param direction 0 发送的好友请求；1 收到的好友请求。
+ 
+ @return 好友请求
+ */
+- (WFCCFriendRequest *)getFriendRequest:(NSString *)uerId direction:(int)direction;
+
+/**
  从服务器更新好友请求
  */
 - (void)loadFriendRequestFromRemote;
@@ -665,13 +933,15 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 
  @param userId 用户ID
  @param accpet 是否接受
+ @param extra 附加信息，如果接受，附加信息会添加到好友附加信息中
  @param successBlock 成功的回调
  @param errorBlock 失败的回调
  */
 - (void)handleFriendRequest:(NSString *)userId
                      accept:(BOOL)accpet
-                  success:(void(^)(void))successBlock
-                    error:(void(^)(int error_code))errorBlock;
+                      extra:(NSString *)extra
+                    success:(void(^)(void))successBlock
+                      error:(void(^)(int error_code))errorBlock;
 
 - (NSString *)getFriendAlias:(NSString *)friendId;
 
@@ -680,6 +950,7 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
           success:(void(^)(void))successBlock
             error:(void(^)(int error_code))errorBlock;
 
+- (NSString *)getFriendExtra:(NSString *)friendId;
 /**
  查询用户是否被加入黑名单
  
@@ -715,10 +986,33 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  
  @param groupId 群ID
  @param forceUpdate 是否强制从服务器更新，如果不刷新则从本地缓存中读取
- @return 群成员信息
+ @return 群成员信息列表
  */
 - (NSArray<WFCCGroupMember *> *)getGroupMembers:(NSString *)groupId
                                     forceUpdate:(BOOL)forceUpdate;
+
+/**
+ 根据成员类型获取群成员信息
+ 
+ @param groupId 群ID
+ @param memberType 群成员类型
+ @return 群成员信息列表
+ */
+- (NSArray<WFCCGroupMember *> *)getGroupMembers:(NSString *)groupId
+                                    type:(WFCCGroupMemberType)memberType;
+
+/**
+ 获取群成员信息
+ 
+ @param groupId 群ID
+ @param refresh 是否强制从服务器更新，如果不刷新则从本地缓存中读取
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)getGroupMembers:(NSString *)groupId
+                refresh:(BOOL)refresh
+                success:(void(^)(NSString *groupId, NSArray<WFCCGroupMember *> *))successBlock
+                  error:(void(^)(int errorCode))errorBlock;
 
 /**
  获取群信息
@@ -730,6 +1024,18 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 - (WFCCGroupInfo *)getGroupInfo:(NSString *)groupId
                         refresh:(BOOL)refresh;
 
+/**
+ 获取群信息
+ 
+ @param groupId 群ID
+ @param refresh 是否强制从服务器更新，如果不刷新则从本地缓存中读取
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)getGroupInfo:(NSString *)groupId
+             refresh:(BOOL)refresh
+             success:(void(^)(WFCCGroupInfo *groupInfo))successBlock
+               error:(void(^)(int errorCode))errorBlock;
 /**
  获取群成员信息
  
@@ -846,7 +1152,7 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
                   error:(void(^)(int error_code))errorBlock;
 
 /**
- 修改群昵称
+ 修改自己的群昵称
 
  @param groupId 群ID
  @param newAlias 昵称
@@ -861,6 +1167,24 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
            notifyContent:(WFCCMessageContent *)notifyContent
                  success:(void(^)(void))successBlock
                    error:(void(^)(int error_code))errorBlock;
+
+/**
+ 修改群成员的昵称，群主可以修改所有人，群管理员可以修改普通成员的群昵称
+
+ @param groupId 群ID
+ @param newAlias 昵称
+ @param notifyLines 默认传 @[@(0)]
+ @param notifyContent 通知消息
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)modifyGroupMemberAlias:(NSString *)groupId
+                      memberId:(NSString *)memberId
+                         alias:(NSString *)newAlias
+                   notifyLines:(NSArray<NSNumber *> *)notifyLines
+                 notifyContent:(WFCCMessageContent *)notifyContent
+                       success:(void(^)(void))successBlock
+                         error:(void(^)(int error_code))errorBlock;
 
 /**
  转移群主
@@ -884,7 +1208,7 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  
  @param groupId 群ID
  @param isSet    设置或取消
- @param memberId    成员ID
+ @param memberIds    成员ID
  @param notifyLines 默认传 @[@(0)]
  @param notifyContent 通知消息
  @param successBlock 成功的回调
@@ -892,11 +1216,49 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
  */
 - (void)setGroupManager:(NSString *)groupId
                   isSet:(BOOL)isSet
-              memberIds:(NSArray<NSString *> *)memberId
+              memberIds:(NSArray<NSString *> *)memberIds
             notifyLines:(NSArray<NSNumber *> *)notifyLines
           notifyContent:(WFCCMessageContent *)notifyContent
                 success:(void(^)(void))successBlock
                   error:(void(^)(int error_code))errorBlock;
+
+/**
+ 设置群成员禁言，仅专业版支持
+ 
+ @param groupId 群ID
+ @param isSet    设置或取消
+ @param memberIds    成员ID
+ @param notifyLines 默认传 @[@(0)]
+ @param notifyContent 通知消息
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)muteGroupMember:(NSString *)groupId
+                     isSet:(BOOL)isSet
+                 memberIds:(NSArray<NSString *> *)memberIds
+               notifyLines:(NSArray<NSNumber *> *)notifyLines
+             notifyContent:(WFCCMessageContent *)notifyContent
+                   success:(void(^)(void))successBlock
+                     error:(void(^)(int error_code))errorBlock;
+
+/**
+ 设置群成员允许名单，当设置群全局禁言时，仅群主/群管理/运行名单成员可以发言，仅专业版支持
+ 
+ @param groupId 群ID
+ @param isSet    设置或取消
+ @param memberIds    成员ID
+ @param notifyLines 默认传 @[@(0)]
+ @param notifyContent 通知消息
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)allowGroupMember:(NSString *)groupId
+                   isSet:(BOOL)isSet
+               memberIds:(NSArray<NSString *> *)memberIds
+             notifyLines:(NSArray<NSNumber *> *)notifyLines
+           notifyContent:(WFCCMessageContent *)notifyContent
+                 success:(void(^)(void))successBlock
+                   error:(void(^)(int error_code))errorBlock;
 /**
  获取当前用户收藏的群组
  
@@ -968,21 +1330,135 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
 
 
 
+/**
+是否全局静音
 
+@return YES，当前用户全局静音；NO，没有全局静音
+*/
 - (BOOL)isGlobalSlient;
+
+/**
+修改全局静音状态
+
+@param slient 是否静音
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
 - (void)setGlobalSlient:(BOOL)slient
                 success:(void(^)(void))successBlock
                   error:(void(^)(int error_code))errorBlock;
+
+/**
+获取免打扰时间
+
+ @param resultBlock 免打扰时间回调，时间为UTC 0点开始的分钟数，需要转换成当地时间。
+ @param errorBlock 不存在时调用，error_code为-1
+*/
+- (void)getNoDisturbingTimes:(void(^)(int startMins, int endMins))resultBlock
+                       error:(void(^)(int error_code))errorBlock;
+
+/**
+修改免打扰时间
+
+@param startMins 起始时间，一天中的分钟数，时间为UTC，需要转换成当地时间。
+@param endMins 结束时间，一天中的分钟数。可以小于startMins，如果小于表示隔夜。
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
+- (void)setNoDisturbingTimes:(int)startMins
+                     endMins:(int)endMins
+                     success:(void(^)(void))successBlock
+                       error:(void(^)(int error_code))errorBlock;
+
+/**
+取消免打扰时间
+
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
+- (void)clearNoDisturbingTimes:(void(^)(void))successBlock
+                         error:(void(^)(int error_code))errorBlock;
+
+/**
+是否隐藏推送详情
+
+@return YES，隐藏推送详情，提示“您收到一条消息”；NO，推送显示消息摘要
+*/
 - (BOOL)isHiddenNotificationDetail;
+
+/**
+修改全局静音状态
+
+@param hidden 是否静音
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
 - (void)setHiddenNotificationDetail:(BOOL)hidden
                             success:(void(^)(void))successBlock
                               error:(void(^)(int error_code))errorBlock;
+
+/**
+是否隐藏群组会话中群成员昵称显示
+
+@return YES，群组会话中不显示群成员昵称；NO，显示
+*/
 - (BOOL)isHiddenGroupMemberName:(NSString *)groupId;
+
+/**
+修改隐藏群组会话中群成员昵称显示状态
+
+@param hidden 是否隐藏
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
 - (void)setHiddenGroupMemberName:(BOOL)hidden
                            group:(NSString *)groupId
                          success:(void(^)(void))successBlock
                            error:(void(^)(int error_code))errorBlock;
+/**
+当前用户是否启用消息回执功能，仅专业版有效
 
+@return YES，开启消息回执功能；NO，关闭个人的消息回执功能。
+@disscussion 仅当服务器开启这个功能才有效
+*/
+- (BOOL)isUserEnableReceipt;
+/**
+修改当前用户是否启用消息回执功能，仅专业版有效
+
+@param enable 是否开启
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+ @disscussion 仅当服务器开启这个功能才有效
+*/
+- (void)setUserEnableReceipt:(BOOL)enable
+                success:(void(^)(void))successBlock
+                       error:(void(^)(int error_code))errorBlock;
+
+
+
+/**
+ 获取当前用户星标用户
+ 
+ @return 当前用户星标用户
+ */
+- (NSArray<NSString *> *)getFavUsers;
+
+/**
+ 是否是星标用户
+ 
+ @return 是否是星标用户
+ */
+- (BOOL)isFavUser:(NSString *)userId;
+
+/**
+ 设置星标用户
+ 
+ @param userId 用户ID
+ @param fav 是否星标
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)setFavUser:(NSString *)userId fav:(BOOL)fav success:(void(^)(void))successBlock error:(void(^)(int errorCode))errorBlock;
 #pragma mark - 聊天室相关
 - (void)joinChatroom:(NSString *)chatroomId
              success:(void(^)(void))successBlock
@@ -1088,10 +1564,141 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
                success:(void(^)(void))successBlock
                  error:(void(^)(int error_code))errorBlock;
 
+#pragma mark - 其它接口
+/**
+获取PC在线信息
+
+@return PC端在线状态
+*/
+- (NSArray<WFCCPCOnlineInfo *> *)getPCOnlineInfos;
+
+/**
+踢掉PC或者Web
+
+@param pcClientId PC或Web端的clientId
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
+- (void)kickoffPCClient:(NSString *)pcClientId
+                success:(void(^)(void))successBlock
+                  error:(void(^)(int error_code))errorBlock;
+
+/**
+ PC/Web在线时，是否发送通知
+
+ @return 是否通知
+ */
+- (BOOL)isMuteNotificationWhenPcOnline;
+
+/**
+ 设置PC/Web在线时，是否发送通知
+
+ @param isMute 是否通知
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)muteNotificationWhenPcOnline:(BOOL)isMute
+                             success:(void(^)(void))successBlock
+                               error:(void(^)(int error_code))errorBlock;
+
+/**
+ 获取会话文件。conversation不为空时，获取该会话内的文件记录；当conversation为空时，获取用户收到的所有文件记录。
+
+ @param conversation 会话
+ @param fromUser 该用户发送的文件，如果为空返回所有文件
+ @param messageUid 起始记录的UID
+ @param count count
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)getConversationFiles:(WFCCConversation *)conversation
+                    fromUser:(NSString *)fromUser
+            beforeMessageUid:(long long)messageUid
+                       count:(int)count
+                     success:(void(^)(NSArray<WFCCFileRecord *> *files))successBlock
+                       error:(void(^)(int error_code))errorBlock;
+
+/**
+ 获取当前用法发送的文件。
+
+ @param beforeMessageUid 起始记录的UID
+ @param count count
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)getMyFiles:(long long)beforeMessageUid
+             count:(int)count
+           success:(void(^)(NSArray<WFCCFileRecord *> *files))successBlock
+             error:(void(^)(int error_code))errorBlock;
+
+/**
+ 删除文件记录。发送者可以删除，另外如果在群里，群主和管理员也可以删除。
+
+ @param messageUid 起始记录的UID
+ @param successBlock 成功的回调
+ @param errorBlock 失败的回调
+ */
+- (void)deleteFileRecord:(long long)messageUid
+                 success:(void(^)(void))successBlock
+                   error:(void(^)(int error_code))errorBlock;
+/**
+获取媒体文件授权访问地址
+
+@param messageUid 消息Uid
+@param mediaType 媒体类型
+@param mediaPath 媒体Path
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
+- (void)getAuthorizedMediaUrl:(long long)messageUid
+                    mediaType:(WFCCMediaType)mediaType
+                    mediaPath:(NSString *)mediaPath
+                      success:(void(^)(NSString *authorizedUrl))successBlock
+                        error:(void(^)(int error_code))errorBlock;
+
+/**
+amr文件转成wav数据
+
+@param amrPath amr文件路径
+@return wav数据
+*/
+- (NSData *)getWavData:(NSString *)amrPath;
+
 /**
  获取图片缩略图参数
  
- @retur 图片缩略图参数
+ @return 图片缩略图参数
  */
 - (NSString *)imageThumbPara;
+
+
+/**
+ 开启数据库事务。注意：该方法仅仅在做数据迁移时使用，其它情况不要使用；另外开启成功后一定要注意commit，需要配对使用.
+ 
+ @return 是否开启成功。
+ */
+- (BOOL)beginTransaction;
+
+/**
+提交数据库事务。注意：该方法仅仅在做数据迁移时使用，其它情况不要使用；需要跟beginTransaction配对使用
+ 
+*/
+- (void)commitTransaction;
+
+/**
+ 是否是商业版IM服务。
+ */
+- (BOOL)isCommercialServer;
+
+/**
+是否支持已送达报告和已阅读报告
+*/
+- (BOOL)isReceiptEnabled;
+
+- (void)sendConferenceRequest:(long long)sessionId
+                         room:(NSString *)roomId
+                      request:(NSString *)request
+                         data:(NSString *)data
+                      success:(void(^)(NSString *authorizedUrl))successBlock
+                        error:(void(^)(int error_code))errorBlock;
 @end

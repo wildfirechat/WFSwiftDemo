@@ -25,13 +25,16 @@ typedef NS_ENUM(NSInteger, DownloadMediaType) {
 + (instancetype)sharedDownloader;
 
 /*
- * @return YES 可以下载； NO 已经在下载了
+ * @return YES 正在下载； NO 无法下载
  */
 - (BOOL)tryDownload:(WFCCMessage *)msg
             success:(void(^)(long long messageUid, NSString *localPath))successBlock
               error:(void(^)(long long messageUid, int error_code))errorBlock;
 
 
+/*
+* @return YES 正在下载； NO 无法下载。朋友圈会使用这个方法
+*/
 - (BOOL)tryDownload:(NSString *)mediaPath
                 uid:(long long)uid
           mediaType:(DownloadMediaType)mediaType
