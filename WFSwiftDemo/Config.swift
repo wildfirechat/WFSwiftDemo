@@ -8,5 +8,5 @@
 
 import Foundation
 
-let DEMO_APP_URL = "http://wildfirechat.cn:8888"
-let IM_HOST = "wildfirechat.cn"
+let DEMO_APP_URL = "http://wildfirechat.net:8888"
+let IM_HOST = "wildfirechat.net"

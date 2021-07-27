@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		b7kaTxLW1zIShsokKS9NgD64dkk=
+		0p5yngkGm+X2lIfhaPGzh0bXqSc=
 		</data>
 		<key>Headers/AirplayActiveView.h</key>
 		<data>
@@ -23,6 +23,10 @@
 		<key>Headers/KZVideoViewController.h</key>
 		<data>
 		zOVLbhb8jo5k9EoscjynoTPIoL0=
+		</data>
+		<key>Headers/Predefine.h</key>
+		<data>
+		UhXwA3yFCG3qoRBh7XGHjWu53XU=
 		</data>
 		<key>Headers/QrCodeHelper.h</key>
 		<data>
@@ -70,7 +74,7 @@
 		</data>
 		<key>Headers/WFCUConfigManager.h</key>
 		<data>
-		DD1FgcqW4Te/ivcIoCbBSkuPdR0=
+		z2AmuqzKiskZP78VF1rVdbdTMNY=
 		</data>
 		<key>Headers/WFCUContactListViewController.h</key>
 		<data>
@@ -84,6 +88,10 @@
 		<data>
 		e9YO2ZsdIp+Xhh3Jy5OtZs0mLU4=
 		</data>
+		<key>Headers/WFCUEnum.h</key>
+		<data>
+		Xr3c5vIMtakdYldJ8Q8tYiCV0aI=
+		</data>
 		<key>Headers/WFCUFaceBoard.h</key>
 		<data>
 		r+4oJyXNkrPIUpqUoVYVGBQJYMQ=
@@ -94,7 +102,15 @@
 		</data>
 		<key>Headers/WFCUFavoriteItem.h</key>
 		<data>
-		gw6eQKz9lEsosBLVuZ+jnCepB2U=
+		J7F3oO7DEOZDLOewxQswAavMuWk=
+		</data>
+		<key>Headers/WFCUFilesEntryViewController.h</key>
+		<data>
+		4WzkixGDgCQhwwu1ycm0JoGQpHc=
+		</data>
+		<key>Headers/WFCUFilesViewController.h</key>
+		<data>
+		BFBTIie0FLdhji/c8BNFcXZ6unQ=
 		</data>
 		<key>Headers/WFCUForwardViewController.h</key>
 		<data>
@@ -114,7 +130,7 @@
 		</data>
 		<key>Headers/WFCUGroupInfoViewController.h</key>
 		<data>
-		IsiEfQuWGUL+VMTL3Q+2yUltPXM=
+		UrmMee8G4jsSo7iDUxnTGjRzvZc=
 		</data>
 		<key>Headers/WFCULocationPoint.h</key>
 		<data>
@@ -154,11 +170,23 @@
 		</data>
 		<key>Headers/WFCUProfileTableViewController.h</key>
 		<data>
-		fXMUO6dixBUKzAx815APywjCJ80=
+		cPTa9uL3CwEa36xCakgueAEI5OI=
+		</data>
+		<key>Headers/WFCUPushToTalkCreateViewController.h</key>
+		<data>
+		wQkUwf0G/Feig3AXU0oyXyUgoBA=
+		</data>
+		<key>Headers/WFCUPushToTalkListViewController.h</key>
+		<data>
+		3VANL6OsRgpBOf6TlUgJ1ItcApM=
+		</data>
+		<key>Headers/WFCUPushToTalkViewController.h</key>
+		<data>
+		oMPRiH1DpTU28K3DauWA7dP74T4=
 		</data>
 		<key>Headers/WFCUUtilities.h</key>
 		<data>
-		9kaL/F89D+UqUje8Xyy1UpCOH3Y=
+		gHyu38EMuiVkV8a8ycG9BEVlyfs=
 		</data>
 		<key>Headers/WFCUVideoViewController.h</key>
 		<data>
@@ -166,15 +194,19 @@
 		</data>
 		<key>Headers/WFChatUIKit.h</key>
 		<data>
-		boZ4NdWAXMYfL2/wHMMeXtiYBXw=
+		LgSpFeXAbJJTtKfMt+Z6zloJ6L4=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		KF6/28fVszqCWsPYZeuxdBthet4=
+		fxGwVart4Zz+ZSoAmdgsdHQw6QQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		595Uj0FiebUwyn5syi4ZlguTzec=
+		</data>
+		<key>unicode_to_hanyu_pinyin.txt</key>
+		<data>
+		ffUFz3J3RAGhPoLZ+kZcA/d6J5M=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -183,11 +215,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			b7kaTxLW1zIShsokKS9NgD64dkk=
+			0p5yngkGm+X2lIfhaPGzh0bXqSc=
 			</data>
 			<key>hash2</key>
 			<data>
-			YbAa2ayR6bu40iqNMj1xlSR8oVvLm2mpejyZY8mwDd4=
+			yr8MByrC1ul1Bl2vwBMY9sbW2Se7NkR4tNz7dT0umO8=
 			</data>
 		</dict>
 		<key>Headers/AirplayActiveView.h</key>
@@ -232,6 +264,17 @@
 			<key>hash2</key>
 			<data>
 			Jrqa9Ys097+xz/H1GoBJ3xZSL7C5oJhMBzF1t8Yq2+o=
+			</data>
+		</dict>
+		<key>Headers/Predefine.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			UhXwA3yFCG3qoRBh7XGHjWu53XU=
+			</data>
+			<key>hash2</key>
+			<data>
+			4rjqbasQDsBqkbTsVYe13J0V/5Zxo8EqhUrE6EzQP9I=
 			</data>
 		</dict>
 		<key>Headers/QrCodeHelper.h</key>
@@ -359,11 +402,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DD1FgcqW4Te/ivcIoCbBSkuPdR0=
+			z2AmuqzKiskZP78VF1rVdbdTMNY=
 			</data>
 			<key>hash2</key>
 			<data>
-			3TQUHUfHoEi5TNK4h+w5Udz7+9z0/MNAskbPSuimVWM=
+			o6XwapBWFB0RlEKIkPiqzCi13ruEnQMZfEPZwnp5TsE=
 			</data>
 		</dict>
 		<key>Headers/WFCUContactListViewController.h</key>
@@ -399,6 +442,17 @@
 			+qufWMt52LD+ppkx7AViZCL9WH5ZlTlBRjW+FIXxGig=
 			</data>
 		</dict>
+		<key>Headers/WFCUEnum.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Xr3c5vIMtakdYldJ8Q8tYiCV0aI=
+			</data>
+			<key>hash2</key>
+			<data>
+			z+DbcAekx/IsbDxv3Ed0lYTIQyvzqWvOnlsa23v3TQ8=
+			</data>
+		</dict>
 		<key>Headers/WFCUFaceBoard.h</key>
 		<dict>
 			<key>hash</key>
@@ -425,11 +479,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			gw6eQKz9lEsosBLVuZ+jnCepB2U=
+			J7F3oO7DEOZDLOewxQswAavMuWk=
 			</data>
 			<key>hash2</key>
 			<data>
-			fZxcYCHqhYm6pyGzAp573hcTHrrP4RJ8+6v3AI4xIJo=
+			2DYjAxihm90Nv48hsUSW+ptXpjMxu86M25hu+8JiokA=
+			</data>
+		</dict>
+		<key>Headers/WFCUFilesEntryViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4WzkixGDgCQhwwu1ycm0JoGQpHc=
+			</data>
+			<key>hash2</key>
+			<data>
+			DX7iaLNhsyk8Swiqya/UWVqJjnHtYlh0m8XMUV7lzfw=
+			</data>
+		</dict>
+		<key>Headers/WFCUFilesViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BFBTIie0FLdhji/c8BNFcXZ6unQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			mPsoioVz0BynPBF9wStSwIaJs9QkukfCEzTY7O8rNLY=
 			</data>
 		</dict>
 		<key>Headers/WFCUForwardViewController.h</key>
@@ -480,11 +556,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			IsiEfQuWGUL+VMTL3Q+2yUltPXM=
+			UrmMee8G4jsSo7iDUxnTGjRzvZc=
 			</data>
 			<key>hash2</key>
 			<data>
-			ij4ldNm4W4Vx5WehAN0F11xC+iV5E88T4fZKlU57BII=
+			H/PKX2qnl4GeE2xUgjVTcqkaWQfBU3yZVsRguXm5tYM=
 			</data>
 		</dict>
 		<key>Headers/WFCULocationPoint.h</key>
@@ -590,22 +666,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			fXMUO6dixBUKzAx815APywjCJ80=
+			cPTa9uL3CwEa36xCakgueAEI5OI=
 			</data>
 			<key>hash2</key>
 			<data>
-			zO8rSFgWAh1fbvpzlqrHi7gwyVS0sez96ensUK858Gg=
+			pk0mzYjSO6J8ecvNi2DJnijoSos8ZOM1L2CsFAsLUps=
+			</data>
+		</dict>
+		<key>Headers/WFCUPushToTalkCreateViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wQkUwf0G/Feig3AXU0oyXyUgoBA=
+			</data>
+			<key>hash2</key>
+			<data>
+			Wv8MJ8gky/iTdw+OgjKCm3/QFTZUwreQf88nuktpp/0=
+			</data>
+		</dict>
+		<key>Headers/WFCUPushToTalkListViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			3VANL6OsRgpBOf6TlUgJ1ItcApM=
+			</data>
+			<key>hash2</key>
+			<data>
+			GbBpiQH8nVqT1oP747hlvwsFYaoMRJcZPwQXvEQ3WYU=
+			</data>
+		</dict>
+		<key>Headers/WFCUPushToTalkViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			oMPRiH1DpTU28K3DauWA7dP74T4=
+			</data>
+			<key>hash2</key>
+			<data>
+			9CDBY7UjcL4jY8pwYhsbaGQV1UoJYJxpX8KedD0E8dw=
 			</data>
 		</dict>
 		<key>Headers/WFCUUtilities.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			9kaL/F89D+UqUje8Xyy1UpCOH3Y=
+			gHyu38EMuiVkV8a8ycG9BEVlyfs=
 			</data>
 			<key>hash2</key>
 			<data>
-			fA4lKRMvzxx0xmzJvgRsMyd4ytylb4uB0tdhpOAFhlY=
+			O4VNtOoBdBDjbLxSfJWcylvOMHbSHfF4hldOSqRyVbc=
 			</data>
 		</dict>
 		<key>Headers/WFCUVideoViewController.h</key>
@@ -623,11 +732,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			boZ4NdWAXMYfL2/wHMMeXtiYBXw=
+			LgSpFeXAbJJTtKfMt+Z6zloJ6L4=
 			</data>
 			<key>hash2</key>
 			<data>
-			6qn077PtJT6PMtylnq5g99TULvBwluozqmfEi56sSsU=
+			YjFOupxSvEtZIPJZREGtMQPPwMaj3cgnEntDDOg0xOY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -639,6 +748,17 @@
 			<key>hash2</key>
 			<data>
 			3Fm4iY1uHpK/tMWQTKF6PTBYnkpotSGyrYRVMyKyJrI=
+			</data>
+		</dict>
+		<key>unicode_to_hanyu_pinyin.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ffUFz3J3RAGhPoLZ+kZcA/d6J5M=
+			</data>
+			<key>hash2</key>
+			<data>
+			b2A/0wOXTO7xOEzDoUWZX0Mh729LF03ktRbPBLlSJHc=
 			</data>
 		</dict>
 	</dict>

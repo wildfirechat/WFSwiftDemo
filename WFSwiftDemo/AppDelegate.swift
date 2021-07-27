@@ -11,12 +11,16 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ConnectionStatusDelegate, WFAVEngineDelegate {
-    func didReceiveCall(_ session: WFAVCallSession!) {
+    func didCallEnded(_ reason: WFAVCallEndReason, duration callDuration: Int32) {
+        
+    }
+    
+    func didReceiveCall(_ session: WFAVCallSession) {
 //        WFCUVideoViewController *videoVC = [[WFCUVideoViewController alloc] initWithSession:session];
 //        [[WFAVEngineKit sharedEngineKit] presentViewController:videoVC];
         DispatchQueue.main.async(execute: {
             let videoVC = WFCUVideoViewController();
-            WFAVEngineKit.shared()?.present(videoVC);
+            WFAVEngineKit.shared().present(videoVC);
         })
     }
     
@@ -48,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ConnectionStatusDelegate,
         // Override point for customization after application launch.
         WFCCNetworkService.sharedInstance()?.connectionStatusDelegate = self as ConnectionStatusDelegate;
         WFCCNetworkService.sharedInstance()?.setServerAddress(IM_HOST);
-        
-        WFAVEngineKit.shared()?.addIceServer("turn:turn.liyufan.win:3478", userName: "wfchat", password: "wfchat");
-        WFAVEngineKit.shared()?.setVideoProfile(WFAVVideoProfile.profile480P, swapWidthHeight: true);
-        WFAVEngineKit.shared()?.delegate = self;
+        WFCCNetworkService.startLog()
+        WFAVEngineKit.shared().addIceServer("turn:turn.liyufan.win:3478", userName: "wfchat", password: "wfchat");
+        WFAVEngineKit.shared().setVideoProfile(WFAVVideoProfile.profile480P, swapWidthHeight: true);
+        WFAVEngineKit.shared().delegate = self;
         
         let bar = UINavigationBar.appearance();
         bar.barTintColor = UIColor.init(displayP3Red: 0.1, green: 0.27, blue: 0.9, alpha: 0.9);

@@ -15,6 +15,7 @@
  - Member_Type_Manager: 管理员
  - Member_Type_Owner: 群主
  - Member_Type_Muted: 被禁言
+ - Member_Type_Deleted: 已删除成员，仅在群成员变动回调中存在。
  - Member_Type_Allowed: 被允许发言
  */
 typedef NS_ENUM(NSInteger, WFCCGroupMemberType) {
@@ -22,6 +23,7 @@ typedef NS_ENUM(NSInteger, WFCCGroupMemberType) {
     Member_Type_Manager,
     Member_Type_Owner,
     Member_Type_Muted,
+    Member_Type_Deleted,
     Member_Type_Allowed = 5
 } ;
 
@@ -44,6 +46,11 @@ typedef NS_ENUM(NSInteger, WFCCGroupMemberType) {
  群昵称
  */
 @property(nonatomic, strong)NSString *alias;
+
+/**
+ 群成员扩展信息
+ */
+@property(nonatomic, strong)NSString *extra;
 
 /**
  群成员类型

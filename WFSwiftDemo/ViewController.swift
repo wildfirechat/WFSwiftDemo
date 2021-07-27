@@ -48,7 +48,7 @@ class ViewController: UIViewController {
                 })
             }
         }) { (operation: URLSessionDataTask!, error: Error!) -> Void in
-            
+            print(error ?? "")
         }
     }
     

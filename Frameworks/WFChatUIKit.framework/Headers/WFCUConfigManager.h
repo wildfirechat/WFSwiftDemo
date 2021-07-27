@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class WFCCConversation;
+typedef NS_ENUM(NSInteger, WFCCMediaType);
 /**
  主题类型
 
@@ -44,6 +46,10 @@ typedef NS_ENUM(NSInteger, WFCUThemeType) {
 @property(nonatomic, weak)id<WFCUAppServiceProvider> appServiceProvider;
 
 @property(nonatomic, strong)NSString *fileTransferId;
+
+@property(nonatomic, strong)NSString *conversationFilesDir;
+
+- (NSString *)cachePathOf:(WFCCConversation *)conversation mediaType:(WFCCMediaType)mediaType;
 @end
 
 NS_ASSUME_NONNULL_END
