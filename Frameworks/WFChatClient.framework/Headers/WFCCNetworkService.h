@@ -35,6 +35,7 @@ extern NSString *kChannelInfoUpdated;
 /**
  连接状态
 
+ - kConnectionStatusKickedoff 多端登录被迫下线。
  - kConnectionStatusSecretKeyMismatch 密钥错误
  - kConnectionStatusTokenIncorrect Token错误
  - kConnectionStatusServerDown 服务器关闭
@@ -46,6 +47,8 @@ extern NSString *kChannelInfoUpdated;
  - kConnectionStatusReceiving: 获取离线消息中，可忽略
  */
 typedef NS_ENUM(NSInteger, ConnectionStatus) {
+  //错误码kConnectionStatusKickedoff是IM服务2021.9.15之后的版本才支持，并且打开服务器端开关server.client_support_kickoff_event
+  kConnectionStatusKickedoff = -7,
   kConnectionStatusSecretKeyMismatch = -6,
   kConnectionStatusTokenIncorrect = -5,
   kConnectionStatusServerDown = -4,
@@ -211,6 +214,15 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 - (void)useSM4;
 
 /**
+ 设置Lite模式。
+ Lite模式下，协议栈不存储数据库，不同步所有信息，只能收发消息，接收消息只接收连接以后发送的消息。
+ 此函数只能在connect之前调用。
+ 
+ @param isLiteMode 是否Lite模式
+ */
+- (void)setLiteMode:(BOOL)isLiteMode;
+
+/**
  获取客户端id
  
  @return 客户端ID
@@ -284,6 +296,13 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
  */
 - (void)setBackupAddressStrategy:(int)strategy;
 - (void)setBackupAddress:(NSString *)host port:(int)port;
+
+/*
+ 设置协议栈短连接User agent。
+ 
+ @param userAgent  User agent
+ */
+- (void)setProtoUserAgent:(NSString *)userAgent;
 @end
 
 #endif

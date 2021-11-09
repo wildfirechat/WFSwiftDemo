@@ -72,6 +72,10 @@
 "Blacklist"="黑名单";
 "MsgReceipt"="消息回执";
 "Delete"="删除";
+"Deleting"="删除中";
+"DeleteLocalMsg"="仅删除本地消息";
+"DeleteRemoteMsg"="删除服务器及其他端消息";
+"DeleteFailed"="删除失败";
 "SearchContact"="搜索联系人";
 "NumberOfContacts"="%d 位联系人";
 "NewFriend"="新朋友";
@@ -160,7 +164,9 @@
 "OperationFailure"="操作失败";
 "NewMessageNotification"="新消息通知";
 "ReceiveNewMessageNotification"="接收新消息通知";
+"ReceiveVoipNotification"="接收语音或视频来电通知";
 "NotificationShowMessageDetail"="通知显示消息详情";
+"SyncDraft"="同步草稿";
 "ModifyEmail"="修改邮箱";
 "ModifyMobile"="修改电话";
 "ModifySocialAccount"="修改社交账号";
@@ -211,8 +217,9 @@
 "MaxCount"="不能超过最大限制";
 "GroupAnnouncement"="群公告";
 "HoldToTalk"="按下 说话";
+"PushToTalk"="按下 对讲";
 "VideoClosed"="视频已关闭";
-"Rebot"="机器人";
+"Robot"="机器人";
 "UserInfomation"="用户信息";
 "MultiSelect"="多选";
 "Quote"="引用";
@@ -225,6 +232,9 @@
 "alertContent" = "不能超过9张图片";
 "alertButton" = "确定";
 "UnAuthorizedTip" = "请在iPhone的\"设置-隐私-照片\"选项中，\n允许%@访问你的手机相册";
-"GroupFiles" = "群文件";
+"ConvFiles" = "会话文件";
 "last_read_here"="上次读到这里了";
 "Favorite"="收藏";
+"重新编辑"="重新编辑";
+"你撤回了一条消息"="你撤回了一条消息 ";
+"%@撤回了一条消息"="%@撤回了一条消息 ";

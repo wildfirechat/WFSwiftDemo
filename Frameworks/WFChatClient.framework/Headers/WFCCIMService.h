@@ -132,6 +132,8 @@ typedef NS_ENUM(NSInteger, UserSettingScope) {
     UserSettingScope_Conversation_Draft = 19,
     //不能直接使用，协议栈内会使用此值
     UserSettingScope_Disable_Sync_Draft = 20,
+    //不能直接使用，协议栈内会使用此值
+    UserSettingScope_Voip_Silent = 21,
     
     
     //自定义用户设置，请使用1000以上的key
@@ -276,6 +278,13 @@ typedef NS_ENUM(NSInteger, WFCCPlatformType) {
                 success:(void(^)(void))successBlock
                   error:(void(^)(int error_code))errorBlock;
 
+/**
+ 获取会话是否免打扰状态
+ 
+ @param conversation 会话
+ @return 会话是否免打扰
+ */
+- (BOOL)isConversationSilent:(WFCCConversation *)conversation;
 /**
  设置会话草稿
  
@@ -1491,6 +1500,24 @@ typedef NS_ENUM(NSInteger, WFCCPlatformType) {
                   error:(void(^)(int error_code))errorBlock;
 
 /**
+是否实时音视频通知面打扰。服务器端2021.9.20后支持分别设置通知免打扰和实时音视频免打扰
+
+@return YES，当前用户音视频不通知；NO，当前用户音视频通知
+*/
+- (BOOL)isVoipNotificationSilent;
+
+/**
+修改实时音视频通知面打扰。服务器端2021.9.20后支持分别设置通知免打扰和实时音视频免打扰
+
+@param silent 是否静音
+@param successBlock 成功的回调
+@param errorBlock 失败的回调
+*/
+- (void)setVoipNotificationSilent:(BOOL)silent
+                          success:(void(^)(void))successBlock
+                            error:(void(^)(int error_code))errorBlock;
+
+/**
 是否开启草稿同步
 
 @return YES，同步；NO，不同步
@@ -1538,6 +1565,11 @@ typedef NS_ENUM(NSInteger, WFCCPlatformType) {
 */
 - (void)clearNoDisturbingTimes:(void(^)(void))successBlock
                          error:(void(^)(int error_code))errorBlock;
+
+/**
+ 当前时间是否是免打扰
+ */
+- (BOOL)isNoDisturbing;
 
 /**
 是否隐藏推送详情
@@ -1751,7 +1783,7 @@ typedef NS_ENUM(NSInteger, WFCCPlatformType) {
 - (BOOL)isMuteNotificationWhenPcOnline;
 
 /**
- 设置PC/Web在线时，手机是否默认静音。缺省值为YES，如果IM服务配置server.mobile_default_silent_when_pc_online 为false时，需要调用此函数设置为NO。
+ 设置PC/Web在线时，手机是否默认静音。缺省值为YES，如果IM服务配置server.mobile_default_silent_when_pc_online 为false时，需要调用此函数设置为NO，此时静音状态意义翻转。
 
  @param defaultSilent 缺省值是否为静音。
  */
@@ -1919,4 +1951,13 @@ amr文件转成wav数据
                          data:(NSString *)data
                       success:(void(^)(NSString *authorizedUrl))successBlock
                         error:(void(^)(int error_code))errorBlock;
+
+- (void)requireLock:(NSString *)lockId
+           duration:(NSUInteger)duration
+            success:(void(^)(void))successBlock
+              error:(void(^)(int error_code))errorBlock;
+
+- (void)releaseLock:(NSString *)lockId
+            success:(void(^)(void))successBlock
+              error:(void(^)(int error_code))errorBlock;
 @end

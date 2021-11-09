@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		0p5yngkGm+X2lIfhaPGzh0bXqSc=
+		0tpsPorghXIXTDCg5robxzLAs5k=
 		</data>
 		<key>Headers/AirplayActiveView.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Headers/Predefine.h</key>
 		<data>
-		UhXwA3yFCG3qoRBh7XGHjWu53XU=
+		awVySQ0A3LQ00aXaa2Dsf0wqSIw=
 		</data>
 		<key>Headers/QrCodeHelper.h</key>
 		<data>
@@ -148,9 +148,9 @@
 		<data>
 		zGOIO8bEnTeM07R6bdqaRWr43jk=
 		</data>
-		<key>Headers/WFCUMessageNotificationViewController.h</key>
+		<key>Headers/WFCUMessageSettingViewController.h</key>
 		<data>
-		2/27TWWlzAB8IWBQPw/q31ZamCo=
+		KvkCjESLokrmZRAFKGIn/E8cGpA=
 		</data>
 		<key>Headers/WFCUModifyMyProfileViewController.h</key>
 		<data>
@@ -172,18 +172,6 @@
 		<data>
 		cPTa9uL3CwEa36xCakgueAEI5OI=
 		</data>
-		<key>Headers/WFCUPushToTalkCreateViewController.h</key>
-		<data>
-		wQkUwf0G/Feig3AXU0oyXyUgoBA=
-		</data>
-		<key>Headers/WFCUPushToTalkListViewController.h</key>
-		<data>
-		3VANL6OsRgpBOf6TlUgJ1ItcApM=
-		</data>
-		<key>Headers/WFCUPushToTalkViewController.h</key>
-		<data>
-		oMPRiH1DpTU28K3DauWA7dP74T4=
-		</data>
 		<key>Headers/WFCUUtilities.h</key>
 		<data>
 		gHyu38EMuiVkV8a8ycG9BEVlyfs=
@@ -194,11 +182,11 @@
 		</data>
 		<key>Headers/WFChatUIKit.h</key>
 		<data>
-		LgSpFeXAbJJTtKfMt+Z6zloJ6L4=
+		fonSrRQ/tl67ZcEXT60VAjGZnYM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		fxGwVart4Zz+ZSoAmdgsdHQw6QQ=
+		DawvcEHtvSbNq7NbvoH94/+ywzg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -215,11 +203,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0p5yngkGm+X2lIfhaPGzh0bXqSc=
+			0tpsPorghXIXTDCg5robxzLAs5k=
 			</data>
 			<key>hash2</key>
 			<data>
-			yr8MByrC1ul1Bl2vwBMY9sbW2Se7NkR4tNz7dT0umO8=
+			z7HjiAdnguQT8i7g5zGoYq0AHIIipPzc7iJlMBPQvto=
 			</data>
 		</dict>
 		<key>Headers/AirplayActiveView.h</key>
@@ -270,11 +258,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			UhXwA3yFCG3qoRBh7XGHjWu53XU=
+			awVySQ0A3LQ00aXaa2Dsf0wqSIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			4rjqbasQDsBqkbTsVYe13J0V/5Zxo8EqhUrE6EzQP9I=
+			5pHWZr5Us2lUmU0SA/TDjheSVRFm1kU3oefdiORpDC8=
 			</data>
 		</dict>
 		<key>Headers/QrCodeHelper.h</key>
@@ -607,15 +595,15 @@
 			MW5i2WnVO2BnHC3rBrS9esniqG5JjByVYMqZ/OzTQ2I=
 			</data>
 		</dict>
-		<key>Headers/WFCUMessageNotificationViewController.h</key>
+		<key>Headers/WFCUMessageSettingViewController.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2/27TWWlzAB8IWBQPw/q31ZamCo=
+			KvkCjESLokrmZRAFKGIn/E8cGpA=
 			</data>
 			<key>hash2</key>
 			<data>
-			dH3NiL1l0SuRQhQyS5I7kSi5+DZzS4cprCHRh/QqqeQ=
+			jLjrT4eire44AtsHcw5XMcThGjvlt789f6+SskXyAK4=
 			</data>
 		</dict>
 		<key>Headers/WFCUModifyMyProfileViewController.h</key>
@@ -673,39 +661,6 @@
 			pk0mzYjSO6J8ecvNi2DJnijoSos8ZOM1L2CsFAsLUps=
 			</data>
 		</dict>
-		<key>Headers/WFCUPushToTalkCreateViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			wQkUwf0G/Feig3AXU0oyXyUgoBA=
-			</data>
-			<key>hash2</key>
-			<data>
-			Wv8MJ8gky/iTdw+OgjKCm3/QFTZUwreQf88nuktpp/0=
-			</data>
-		</dict>
-		<key>Headers/WFCUPushToTalkListViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			3VANL6OsRgpBOf6TlUgJ1ItcApM=
-			</data>
-			<key>hash2</key>
-			<data>
-			GbBpiQH8nVqT1oP747hlvwsFYaoMRJcZPwQXvEQ3WYU=
-			</data>
-		</dict>
-		<key>Headers/WFCUPushToTalkViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			oMPRiH1DpTU28K3DauWA7dP74T4=
-			</data>
-			<key>hash2</key>
-			<data>
-			9CDBY7UjcL4jY8pwYhsbaGQV1UoJYJxpX8KedD0E8dw=
-			</data>
-		</dict>
 		<key>Headers/WFCUUtilities.h</key>
 		<dict>
 			<key>hash</key>
@@ -732,11 +687,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LgSpFeXAbJJTtKfMt+Z6zloJ6L4=
+			fonSrRQ/tl67ZcEXT60VAjGZnYM=
 			</data>
 			<key>hash2</key>
 			<data>
-			YjFOupxSvEtZIPJZREGtMQPPwMaj3cgnEntDDOg0xOY=
+			PFvnUZH7GxUq5JjKWhntEE22K9MU4L09hobHpX3/VIs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
