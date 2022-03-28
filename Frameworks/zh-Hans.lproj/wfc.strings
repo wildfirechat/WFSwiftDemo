@@ -64,6 +64,8 @@
 "SendToMoments"="发送到朋友圈";
 "DeleteFriend"="删除好友";
 "SetAlias"="设置备注";
+"AlreadySentFriendRequest"="已经发送过添加好友请求了";
+"FriendRequestRejected"="好友请求已被拒绝";
 "RemoveFromBlacklist"="取消屏蔽";
 "Add2Blacklist"="屏蔽用户";
 "VOIPCall"="视频聊天";
@@ -238,3 +240,5 @@
 "重新编辑"="重新编辑";
 "你撤回了一条消息"="你撤回了一条消息 ";
 "%@撤回了一条消息"="%@撤回了一条消息 ";
+"MarkAsUnread"="标为未读";
+"MarkAsRead"="标为已读";
