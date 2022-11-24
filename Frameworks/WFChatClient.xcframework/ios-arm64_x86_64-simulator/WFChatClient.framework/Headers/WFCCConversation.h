@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "WFCCJsonSerializer.h"
+#import "WFCCProtocol.h"
 /**
  会话类型
 
@@ -16,6 +17,7 @@
  - Chatroom_Type: 聊天室
  - Channel_Type: 频道
  - Things_Type: 物联网
+ - SecretChat_Type: 密聊
  */
 typedef NS_ENUM(NSInteger, WFCCConversationType) {
     Single_Type,
@@ -23,12 +25,13 @@ typedef NS_ENUM(NSInteger, WFCCConversationType) {
     Chatroom_Type,
     Channel_Type,
     Things_Type,
+    SecretChat_Type,
 };
 
 /**
  会话
  */
-@interface WFCCConversation : NSObject <NSCopying>
+@interface WFCCConversation : WFCCJsonSerializer <NSCopying, WFCCDuplicatable>
 
 /**
  构造方法

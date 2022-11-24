@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "WFCCJsonSerializer.h"
 /**
  媒体类型
 
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, WFCCPersistFlag) {
 /**
  普通消息的持久化内容
  */
-@interface WFCCMessagePayload : NSObject
+@interface WFCCMessagePayload : WFCCJsonSerializer
 
 /**
  消息类型
@@ -177,4 +177,8 @@ typedef NS_ENUM(NSInteger, WFCCPersistFlag) {
  附加信息
  */
 @property (nonatomic, strong)NSString *extra;
+
+- (NSString *)getString:(NSDictionary *)dict ofKey:(NSString *)key;
+- (NSArray *)getArray:(NSDictionary *)dict ofKey:(NSString *)key;
+- (NSDictionary *)getDictionary:(NSDictionary *)dict ofKey:(NSString *)key;
 @end

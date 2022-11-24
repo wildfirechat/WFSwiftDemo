@@ -32,6 +32,12 @@ extern NSString *kSettingUpdated;
 extern NSString *kChannelInfoUpdated;
 //用户在线状态更新通知
 extern NSString *kUserOnlineStateUpdated;
+//密聊状态更新通知
+extern NSString *kSecretChatStateUpdated;
+//密聊消息阅后即焚开始计时
+extern NSString *kSecretMessageStartBurning;
+//密聊消息阅后即焚完成
+extern NSString *kSecretMessageBurned;
 
 #pragma mark - 枚举值定义
 /**
@@ -241,7 +247,7 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 @property(nonatomic, weak) id<OnlineEventDelegate> onlineEventDelegate;
 
 /**
- 当前是否处于登陆状态
+ 当前是否处于登录状态
  */
 @property(nonatomic, assign, getter=isLogined, readonly)BOOL logined;
 
@@ -251,7 +257,7 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 @property(nonatomic, assign, readonly)ConnectionStatus currentConnectionStatus;
 
 /**
- 当前登陆的用户ID
+ 当前登录的用户ID
  */
 @property (nonatomic, strong, readonly)NSString *userId;
 
@@ -259,6 +265,11 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
  服务器时间与本地时间的差值
  */
 @property(nonatomic, assign, readonly)long long serverDeltaTime;
+
+/**
+ 发送日志命令
+ */
+@property (nonatomic, strong)NSString *sendLogCommand;
 
 /**
  开启Log
@@ -309,8 +320,8 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
 /**
  断开连接
 
- @param disablePush   是否停止推送，clearSession为YES时无意义。
- @param clearSession 是否清除Session信息，如果清楚本地历史消息将全部清除。
+ @param disablePush   是否停止推送，clearSession为YES时无意义。如果为true，session会变成disable状态，token会失效，必须重新获取token才能登录。
+ @param clearSession 是否清除Session信息，如果清除本地历史消息将全部清除，且token失效无法再次登录，必须重新获取token才能进行登录。
  */
 - (void)disconnect:(BOOL)disablePush clearSession:(BOOL)clearSession;
 
@@ -389,6 +400,11 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
  @param password 密码
  */
 - (void)setProxyInfo:(NSString *)host ip:(NSString *)ip port:(int)port username:(NSString *)username password:(NSString *)password;
+
+/**
+ 获取协议栈版本
+ */
+- (NSString *)getProtoRevision;
 @end
 
 #endif

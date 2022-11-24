@@ -10,11 +10,12 @@
 #import "WFCCConversation.h"
 #import "WFCCMessage.h"
 #import "WFCCUnreadCount.h"
+#import "WFCCJsonSerializer.h"
 
 /**
  会话信息
  */
-@interface WFCCConversationInfo : NSObject
+@interface WFCCConversationInfo : WFCCJsonSerializer
 
 /**
  会话
@@ -44,7 +45,7 @@
 /**
  是否置顶
  */
-@property (nonatomic, assign)BOOL isTop;
+@property (nonatomic, assign)int isTop;
 
 /**
  是否设置了免打扰

@@ -7,24 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "WFCCJsonSerializer.h"
 /**
  群类型
 
  - GroupType_Normal: 管理员和群主才能加人和退群，修改群信息。
  - GroupType_Free: 所有人都能加人、退群和修改群信息
  - GroupType_Restricted: 带有群管理功能
+ - GroupType_Organization: 组织群，只能通过API操作，群主和管理员可以禁言、撤回等操作
  */
 typedef NS_ENUM(NSInteger, WFCCGroupType) {
     GroupType_Normal = 0,
     GroupType_Free = 1,
     GroupType_Restricted = 2,
+    GroupType_Organization = 3,
 } ;
 
 /**
  群信息
  */
-@interface WFCCGroupInfo : NSObject
+@interface WFCCGroupInfo : WFCCJsonSerializer
 
 /**
  群类型
@@ -62,6 +64,11 @@ typedef NS_ENUM(NSInteger, WFCCGroupType) {
 @property (nonatomic, strong)NSString *extra;
 
 /**
+ 群备注
+ */
+@property (nonatomic, strong)NSString *remark;
+
+/**
  群禁言状态，0 关闭群禁言；1 开启群禁言
  */
 @property (nonatomic, assign)int mute;
@@ -96,4 +103,8 @@ typedef NS_ENUM(NSInteger, WFCCGroupType) {
  */
 @property (nonatomic, assign)long long updateTimestamp;
 
+/**
+ 群显示名称，如果有群备注返回群备注，没有群备注返回群名称
+ */
+@property (nonatomic, strong, readonly)NSString *displayName;
 @end

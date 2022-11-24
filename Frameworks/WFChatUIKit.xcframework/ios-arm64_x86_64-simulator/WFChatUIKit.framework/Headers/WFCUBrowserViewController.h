@@ -10,4 +10,6 @@
 
 @interface WFCUBrowserViewController : UIViewController
 @property(nonatomic, strong)NSString *url;
+@property(nonatomic, strong)NSString *htmlString;
+@property(nonatomic, assign)BOOL hidenOpenInBrowser;
 @end

@@ -4,26 +4,41 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/WFAVCallSession.h</key>
+		<data>
+		L4CiTQ97f7JJqOcW68TeH96XTHs=
+		</data>
 		<key>Headers/WFAVEngineKit.h</key>
 		<data>
-		VJDsf8QTXSCiXMePF0toFPD9c9E=
+		pGQb+uXu3g1YiYLx0j5Jr51qVq4=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		6YaiiwgYsL1M24n7avPRIdDzsbs=
+		f3MVsv0xRtouFgECb57MsEC1YsM=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/WFAVCallSession.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			L4CiTQ97f7JJqOcW68TeH96XTHs=
+			</data>
+			<key>hash2</key>
+			<data>
+			gz6tOGsfIzpt98g7lfQpjIDyDpdIKO2Eea4xuUhG2u0=
+			</data>
+		</dict>
 		<key>Headers/WFAVEngineKit.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VJDsf8QTXSCiXMePF0toFPD9c9E=
+			pGQb+uXu3g1YiYLx0j5Jr51qVq4=
 			</data>
 			<key>hash2</key>
 			<data>
-			vd3RSxztB4siJExVBP7DBlKh186k+xR5+CeBS+WtdnM=
+			3Lg23i6XM/YTAO8LoQV3E71F6aK+3GtN858/jSxvuuE=
 			</data>
 		</dict>
 	</dict>

@@ -11,6 +11,10 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ConnectionStatusDelegate, WFAVEngineDelegate {
+    func didReceiveIncomingPush(with payload: PKPushPayload, forType type: String) {
+        
+    }
+    
     func didCallEnded(_ reason: WFAVCallEndReason, duration callDuration: Int32) {
         
     }

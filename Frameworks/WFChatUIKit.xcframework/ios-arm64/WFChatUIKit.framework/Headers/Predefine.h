@@ -36,18 +36,18 @@ alpha:1.0]
 
 #define NIGHT @"night"
 
-//是否iPhoneX YES:iPhoneX屏幕 NO:传统屏幕
-#define kIs_iPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0f ||[UIScreen mainScreen].bounds.size.height == 896.0f ||[UIScreen mainScreen].bounds.size.height == 844.0f ||[UIScreen mainScreen].bounds.size.height == 926.0f)
-
-#define kStatusBarAndNavigationBarHeight (kIs_iPhoneX ? 88.f : 64.f)
-
-#define  kTabbarSafeBottomMargin        (kIs_iPhoneX ? 34.f : 0.f)
-
 #define kMessageListChanged  @"kMessageListChanged"
 
+#define WFZOOM_PRIVATE_CONFERENCE_ID @"WFZOOM_PRIVATE_CONFERENCE_ID"
+#define kCONFERENCE_DESTROYED @"kCONFERENCE_DESTROYED"
+
+//如果您不需要voip功能，请在ChatUIKit工程中关掉voip功能，然后修改WFChat-Prefix-Header.h中WFCU_SUPPORT_VOIP为0
+//ChatUIKit关闭voip的方式是，找到ChatUIKit工程下的Predefine.h头文件，定义WFCU_SUPPORT_VOIP为0，
+//再删除掉ChatUIKit工程的WebRTC和WFAVEngineKit的依赖。
+//删除掉应用工程中的WebRTC.framework和WFAVEngineKit.framework这两个库。
 #define WFCU_SUPPORT_VOIP 1
 
-#define WFCString(key) NSLocalizedStringFromTable(key, @"wfc", nil)
+#define WFCString(key) [[NSBundle bundleForClass:[self class]] localizedStringForKey:key value:@"" table:@"wfc"]
 
 //对讲功能开关，在Chat工程也有同样的一个开关，需要保持同步
 //#define WFC_PTT

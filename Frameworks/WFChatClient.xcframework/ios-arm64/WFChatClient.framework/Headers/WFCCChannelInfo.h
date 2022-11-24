@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WFCCChannelMenu.h"
+#import "WFCCJsonSerializer.h"
 
-@interface WFCCChannelInfo : NSObject
+@interface WFCCChannelInfo : WFCCJsonSerializer
 @property(nonatomic, strong)NSString *channelId;
 @property(nonatomic, strong)NSString *name;
 @property(nonatomic, strong)NSString *portrait;
@@ -21,4 +23,6 @@
 //https://docs.wildfirechat.net/base_knowledge/channel.html##频道状态
 @property(nonatomic, assign)int status;
 @property(nonatomic, assign)long long updateDt;
+
+@property(nonatomic, strong)NSArray<WFCCChannelMenu *> *menus;
 @end
