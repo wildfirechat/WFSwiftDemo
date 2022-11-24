@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         
         let manager = AFHTTPSessionManager();
         manager.requestSerializer = AFJSONRequestSerializer();
-        let paramDict: Dictionary<String, String> = ["mobile" : self.phoneNumberField.text!, "code":self.superCodeField.text!, "clientId":WFCCNetworkService.sharedInstance()?.getClientId() ?? ""];
+        let paramDict: Dictionary<String, Any> = ["mobile" : self.phoneNumberField.text!, "code":self.superCodeField.text!, "clientId":WFCCNetworkService.sharedInstance()?.getClientId() ?? "", "platform":Platform_iOS];
         
         manager.post(DEMO_APP_URL + "/login", parameters: paramDict, progress: nil, success: { (operation: URLSessionDataTask!, responseObject: Any!) -> Void in
             let dict: NSDictionary = responseObject as! NSDictionary;
